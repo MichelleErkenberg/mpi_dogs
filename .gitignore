@@ -1,2 +1,24 @@
-*.agdai
-MAlonzo/**
+# Ignore the entire data directory
+/data/
+
+# Optionally, ignore specific file types that might be large or sensitive
+*.bam
+*.fastq
+*.fasta
+*.gz
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Keep the bin directory and its contents
+!/bin/
