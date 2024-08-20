@@ -4,6 +4,7 @@
 *.fastq
 *.fasta
 *.gz
+*.bai
 
 # Ignore temporary files
 *.tmp
