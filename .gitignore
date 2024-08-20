@@ -1,3 +1,5 @@
+#ignore env_samples
+data/env_samples/
 
 # Optionally, ignore specific file types that might be large or sensitive
 *.bam
