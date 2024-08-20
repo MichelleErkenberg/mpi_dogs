@@ -1,5 +1,6 @@
 #ignore env_samples but not the quicksand file
-data/env_samples
+data/env_samples/Canidae
+data/env_samples/consensus
 !data/env_samples/env_samples_quicksand.tsv
 
 # Optionally, ignore specific file types that might be large or sensitive
