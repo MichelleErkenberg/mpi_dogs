@@ -1,5 +1,3 @@
-# Ignore the entire data directory
-/data/
 
 # Optionally, ignore specific file types that might be large or sensitive
 *.bam
@@ -20,5 +18,3 @@ Thumbs.db
 # Ignore log files
 *.log
 
-# Keep the bin directory and its contents
-!/bin/
