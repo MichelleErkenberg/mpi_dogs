@@ -1,2 +1,31 @@
-*.agdai
-MAlonzo/**
+#ignore env_samples but not the quicksand file
+data/env_samples/Canidae
+data/env_samples/consensus
+data/env_samples/quicksand.v2
+<<<<<<< HEAD
+=======
+data/env_samples/Consensus
+>>>>>>> 73532eb23e1b2d6e844536640f7dd9c67b8b5951
+!data/env_samples/env_samples_quicksand.tsv
+
+
+# Optionally, ignore specific file types that might be large or sensitive
+*.bam
+*.fastq
+*.fasta
+*.gz
+*.bai
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
