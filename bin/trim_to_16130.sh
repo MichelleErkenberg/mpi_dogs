@@ -6,15 +6,20 @@ desired_length=16130
 # create a 'trim' directory if it doesn't exist
 mkdir -p trim
 
+# Function to get the actual sequence name from the FASTA file
+get_seq_name() {
+    head -n 1 "$1" | sed 's/^>//' | awk '{print $1}'
+}
+
 # For each .fas file in the current directory (mask)
-for file in [A-Z]*.fas; do
+for file in *.fas; do
     # Check if the file exists
     if [ -f "$file" ]; then
         # Extract the filename without extension
         base_name="${file%.fas}"
 
 	  # Get the actual sequence name from the FASTA file
-        seq_name=$(head -n 1 "$file" | sed 's/^>//')       
+        seq_name=$(get_seq_name "$file")
  
         # Create a temporary .bed file
         echo -e "${seq_name}\t0\t${desired_length}" > "${base_name}.bed"
