@@ -4,7 +4,7 @@
 NAMES_FILE="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/bin/names.txt"
 
 # FASTA file
-FASTA_FILE="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Consensus/combined_with_pub.fasta"
+FASTA_FILE="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Consensus/msa/combined_with_pub.fasta"
 
 # Output directory
 OUTPUT_DIR="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Consensus/mask"
