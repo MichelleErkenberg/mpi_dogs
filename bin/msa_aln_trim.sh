@@ -23,7 +23,7 @@ echo "First part executed successfully. The alignment has been saved in '$msa_di
 
 # INCLUDING PREVIOUSLY PUBLISHED DOGS
 
-cat "$msa_dir/combined_trim.fasta"  /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/Canis_latrans.fasta /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/science_dogs_all.fasta > "$msa_dir/combined_trim_with_pub.fasta"
+cat "$msa_dir/combined_trim.fasta"  /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/Canis_latrans.fasta /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/science_dogs_all.with_haps.fasta > "$msa_dir/combined_trim_with_pub.fasta"
 
 # create a msa using MAFFT with previously published dogs
 mafft "$msa_dir/combined_trim_with_pub.fasta" > "$msa_dir/combined_trim_with_pub.aln"
