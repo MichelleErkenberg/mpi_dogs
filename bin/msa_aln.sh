@@ -16,7 +16,7 @@ echo "Script executed successfully. The alignment has been saved in 'msa/combine
 
 # INCLUDING PREVIOUSLY PUBLISHED DOGS
 
-cat msa/combined.fasta /mnt/scratch/praktikum2024_mol_anth/data/Canis_latrans.fasta /mnt/scratch/praktikum2024_mol_anth/data/science_dogs/science_dogs_all.with_haps.fasta > msa/combined_with_pub.fasta
+cat msa/combined.fasta /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/Canis_latrans.fasta /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/science_dogs_all.with_haps.fasta > msa/combined_with_pub.fasta
 
 # create a msa using MAFFT with previously published dogs
 mafft msa/combined_with_pub.fasta > msa/combined_with_pub.aln
