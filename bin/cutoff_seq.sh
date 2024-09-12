@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Define the working directory
+work_dir="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Consensus/mask"
+
+# Ensure the working directory exists
+mkdir -p "$work_dir"
+
+# Change to the working directory
+cd "$work_dir" || exit
+
 # Create the cutoff directory if it doesn't exist
 mkdir -p cutoff
 
