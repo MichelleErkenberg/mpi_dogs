@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name of MSA file
-msa_file="combined_cutoff.fasta"
+msa_file="combined_cutoff_with_pub.NC_002008.4.trimmed.aln"
 
 # Name of the output CSV file
 output_csv="dog_sequence_differences.csv"
