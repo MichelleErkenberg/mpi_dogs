@@ -38,3 +38,8 @@ echo "Phylogenetic tree for MPI dogs created and saved as '$OUTDIR/mpi_dogs_tree
 FastTree -nt < combined_cutoff_with_pub.aln > "$OUTDIR/mpi_dogs_with_pub_tree_cutoff.nwk"
 
 echo "Phylogenetic tree for MPI dogs and published dogs created and saved as '$OUTDIR/mpi_dogs_with_pub_tree_cutoff.nwk'."
+
+# Create phylogenetic tree with MPI dogs and published dogs (cutoff) and reference dog NC_002008.4
+FastTree -nt < combined_cutoff_with_pub.NC_002008.4.aln > "$OUTDIR/mpi_dogs_with_pub_tree_cutoff.NC_002008.4.nwk"
+
+echo "Phylogenetic tree for MPI dogs and published dogs created and saved as '$OUTDIR/mpi_dogs_with_pub_tree_cutoff.NC_002008.4.nwk'."

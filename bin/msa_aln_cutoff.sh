@@ -29,3 +29,14 @@ cat "$msa_dir/combined_cutoff.fasta" /mnt/expressions/michelle_erkenberg/github/
 mafft "$msa_dir/combined_cutoff_with_pub.fasta" > "$msa_dir/combined_cutoff_with_pub.aln"
 
 echo "Script executed successfully. The alignment has been saved in 'msa/combined_cutoff_with_pub.aln'."
+
+# Including reference dog NC_002008.4
+
+cat "$msa_dir/combined_cutoff_with_pub.aln" /mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/Canis_lupus_familiaris.fasta > "$msa_dir/combined_cutoff_with_pub.NC_002008.4.fasta"
+
+#create a msa using MAFFT with reference dog NC_002008.4
+
+mafft "$msa_dir/combined_cutoff_with_pub.NC_002008.4.fasta" > "$msa_dir/combined_cutoff_with_pub.NC_002008.4.aln"
+
+echo "Script executed successfully. The alignment has been saved in 'msa/combined_cutoff_with_pub.NC_002008.4.aln'."
+
