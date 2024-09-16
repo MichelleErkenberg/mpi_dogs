@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the working directory
-work_dir="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Consensus/msa"
+work_dir="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Consensus/msa/diff"
 cd "$work_dir" || exit 1
 
 #Set the specific input file name
