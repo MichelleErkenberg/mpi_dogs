@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Use the provided directory or the current one if none is specified
-dir="${1:-.}"
+#change to directory
+cd ../data/dog_samples
 
 # Iterate over all BAM files in the specified directory
-for bam_file in "$dir"/*.bam
-do
+for bam_file in *.bam; do
   # Define the output file for each BAM file
   output_file="$dir/$(basename "$bam_file" .bam)_sequence_counts.csv"
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#change to directory
+cd ../data/dog_samples
+
 # Create the MQ25 subdirectory inside ChrM if it doesn't exist
 mkdir -p ChrM/MQ25
 
