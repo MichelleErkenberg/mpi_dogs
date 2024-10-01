@@ -9,6 +9,8 @@ data/env_samples/Consensus
 !data/env_samples/env_samples_quicksand.tsv
 !data/dog_samples/Consensus/*.fasta
 
+#Ignore the cleaning file
+cleaning/
 
 # Optionally, ignore specific file types that might be large or sensitive
 *.bam
