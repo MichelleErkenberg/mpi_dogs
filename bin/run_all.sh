@@ -13,3 +13,7 @@
 	#count the sequences and for orignial data count also for sequences per chromosom
 	bash processing/count_sequences.sh
 	bash processing/count_sequences_per_chromosom.sh
+	
+#Call a consensus sequence for each dog using Matthias' perl script
+
+	bash consensus/consensus.sh	
