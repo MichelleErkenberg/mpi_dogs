@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#change to directory
+cd ../data/dog_samples
+
 # Create output directory
 mkdir -p ChrM
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#change to directory
+cd ../data/dog_samples
+
 # Create the dedup subdirectory inside ChrM/MQ25 if it doesn't exist
 mkdir -p ChrM/MQ25/dedup
 
