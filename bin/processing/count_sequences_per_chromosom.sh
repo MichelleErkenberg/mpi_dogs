@@ -6,7 +6,7 @@ cd ../data/dog_samples
 # Iterate over all BAM files in the specified directory
 for bam_file in *.bam; do
   # Define the output file for each BAM file
-  output_file="$dir/$(basename "$bam_file" .bam)_sequence_counts.csv"
+  output_file="$(basename "$bam_file" .bam)_sequence_counts.csv"
 
   # Write the header to the CSV file
   echo "Chromosome,SequenceCount" > "$output_file"

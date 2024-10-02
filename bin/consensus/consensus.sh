@@ -5,10 +5,10 @@ BAM_DIR="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/Ch
 REF_FILE="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/Canis_lupus_familiaris.fasta"
 SCRIPT_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/bin/consensus/consensus_from_bam.pl"
 
-# Create the 'Consensus' directory if it doesn't exist
+# Create the 'consensus' directory if it doesn't exist
 mkdir -p ../data/dog_samples/consensus
 
-# Change to the 'Consensus' directory
+# Change to the 'consensus' directory
 cd ../data/dog_samples/consensus
 
 # Loop through all BAM files in the specified directory
