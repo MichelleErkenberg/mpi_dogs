@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Define directories and reference file
-BAM_DIR="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/dog_samples/ChrM/MQ25/dedup"
-REF_FILE="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/data/science_dogs/Canis_lupus_familiaris.fasta"
-SCRIPT_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/bin/consensus/consensus_from_bam.pl"
+BAM_DIR="$BASE_PATH/data/dog_samples/ChrM/MQ25/dedup"
+REF_FILE="$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta"
+SCRIPT_PATH="$BASE_PATH/bin/consensus/consensus_from_bam.pl"
 
 # Create the 'consensus' directory if it doesn't exist
 mkdir -p ../data/dog_samples/consensus

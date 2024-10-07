@@ -1,10 +1,10 @@
 ##!/bin/bash
 
-#processing the data: renaming, filtering for ChrM and Quality and counting
+#define base path, need to be change to your path
+export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs/" 
 
-	#renaming the *.bam files (in mpi dogs)
-	bash processing/rename.sh
-	
+#processing the data, filtering for ChrM and Quality and counting
+
 	#filter for the mitochondrial Chromosom, mapquaility 25% and dedup
 	bash processing/filter_ChrM.sh
 	bash processing/filter_MQ25.sh
@@ -14,5 +14,13 @@
 	bash processing/count_sequences.sh
 	bash processing/count_sequences_per_chromosom.sh
 	
-#Call a consensus sequence for each dog using Matthias' perl script; absolute paths need to be filled in
+#Call a consensus sequence for each dog using Matthias' perl script
 	bash consensus/consensus.sh	
+
+#msa for the created consensus sequences (renaming the sequence as part of the masking process)
+
+	#copies and renames the consensus sequences for all of our dogs, Undetermined is deleted in the process
+	bash msa/mask.sh
+
+	#cutoff the sequence of all our dogs after TTTTAGG/AAG
+	bash msa/cutoff_seq.sh
