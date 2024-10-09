@@ -70,12 +70,13 @@ def main():
                 if sequence_index < len(csv_data):
                     csv_key = list(csv_data.keys())[sequence_index]
                     updated_sequence = update_sequence(current_sequence, csv_data[csv_key])
-                    # Split the updated sequence into 60-character lines
-                    for i in range(0, len(updated_sequence), 60):
-                        updated_aln.append(updated_sequence[i:i+60] + '\n')
                 else:
-                    # If no CSV data for this sequence, keep it unchanged
-                    updated_aln.append(current_sequence)
+                    updated_sequence = current_sequence
+                
+                # Split the updated sequence into 60-character lines
+                for i in range(0, len(updated_sequence), 60):
+                    updated_aln.append(updated_sequence[i:i+60] + '\n')
+                
                 sequence_index += 1
 
             # Start processing a new sequence
@@ -91,10 +92,12 @@ def main():
         if sequence_index < len(csv_data):
             csv_key = list(csv_data.keys())[sequence_index]
             updated_sequence = update_sequence(current_sequence, csv_data[csv_key])
-            for i in range(0, len(updated_sequence), 60):
-                updated_aln.append(updated_sequence[i:i+60] + '\n')
         else:
-            updated_aln.append(current_sequence)
+            updated_sequence = current_sequence
+        
+        # Split the updated sequence into 60-character lines
+        for i in range(0, len(updated_sequence), 60):
+            updated_aln.append(updated_sequence[i:i+60] + '\n')
 
     # Save the updated alignment
     write_aln(args.output_file, updated_aln)

@@ -3,56 +3,74 @@ from Bio import SeqIO
 import sys
 from collections import defaultdict
 
-def get_immediate_relatives(node):
+def get_immediate_relatives(node, exclude_names):
+    """
+    Find immediate relatives of a given node in the phylogenetic tree.
+    This includes parent, siblings, children, aunts/uncles, and cousins.
+    Excludes names present in exclude_names set.
+    """
     relatives = set()
     
-    # Parent
+    # Check for parent
     parent = node.up
-    if parent:
+    if parent and parent.name not in exclude_names:
         relatives.add(parent.name)
         
-        # Siblings and their children (nephews/nieces)
+        # Add siblings and their children (nieces/nephews)
         for sibling in parent.children:
-            if sibling != node:
+            if sibling != node and sibling.name not in exclude_names:
                 relatives.add(sibling.name)
-                relatives.update(child.name for child in sibling.children)
+                relatives.update(child.name for child in sibling.children if child.name not in exclude_names)
         
-        # Aunts/Uncles and their children (cousins)
+        # Check for grandparent
         grandparent = parent.up
         if grandparent:
+            # Add aunts/uncles and their children (cousins)
             for aunt_uncle in grandparent.children:
-                if aunt_uncle != parent:
+                if aunt_uncle != parent and aunt_uncle.name not in exclude_names:
                     relatives.add(aunt_uncle.name)
-                    relatives.update(cousin.name for cousin in aunt_uncle.children)
+                    relatives.update(cousin.name for cousin in aunt_uncle.children if cousin.name not in exclude_names)
     
-    # Children
-    relatives.update(child.name for child in node.children)
+    # Add children
+    relatives.update(child.name for child in node.children if child.name not in exclude_names)
     
     return relatives
 
-def extract_and_organize_sequences(nwk_file, alignment_file, output_file):
+def extract_and_organize_sequences(nwk_file, alignment_file, names_file, output_file):
+    """
+    Main function to extract and organize sequences based on phylogenetic relationships.
+    """
     # Load the phylogenetic tree
     tree = Tree(nwk_file)
 
-    # Dictionary to store 's_all_' sequences and their related sequences
+    # Dictionary to store sequences and their related sequences
     sequence_groups = defaultdict(set)
 
-    # Find all 's_all_' nodes and their immediate relatives
-    for node in tree.traverse():
-        if node.name and node.name.startswith('s_all_'):
-            relatives = get_immediate_relatives(node)
-            sequence_groups[node.name] = relatives.union({node.name})
+    # Read names from the names file
+    with open(names_file, 'r') as f:
+        names = [line.strip() for line in f]
+    
+    # Create a set of names to exclude
+    exclude_names = set(names)
+
+    # Find immediate relatives for each name
+    for name in names:
+        node = tree.search_nodes(name=name)
+        if node:
+            node = node[0]  # Take the first match if there are multiple
+            relatives = get_immediate_relatives(node, exclude_names)
+            sequence_groups[name] = relatives.union({name})
 
     # Load all sequences from the alignment file
     all_sequences = {record.id: record for record in SeqIO.parse(alignment_file, "fasta")}
 
     # Write organized sequences to output file
     with open(output_file, 'w') as out_handle:
-        for s_all_seq in sorted(sequence_groups.keys()):
-            if s_all_seq in all_sequences:
-                SeqIO.write(all_sequences[s_all_seq], out_handle, "fasta")
+        for main_seq in sorted(sequence_groups.keys()):
+            if main_seq in all_sequences:
+                SeqIO.write(all_sequences[main_seq], out_handle, "fasta")
             
-            related_seqs = sorted(sequence_groups[s_all_seq] - {s_all_seq})
+            related_seqs = sorted(sequence_groups[main_seq] - {main_seq})
             for seq_id in related_seqs:
                 if seq_id in all_sequences:
                     SeqIO.write(all_sequences[seq_id], out_handle, "fasta")
@@ -60,12 +78,16 @@ def extract_and_organize_sequences(nwk_file, alignment_file, output_file):
     print(f"Organized sequences have been saved to {output_file}.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: python script.py <nwk_file> <alignment_file> <output_file>")
+    # Check if the correct number of command-line arguments is provided
+    if len(sys.argv) != 5:
+        print("Usage: python script.py <nwk_file> <alignment_file> <names_file> <output_file>")
         sys.exit(1)
     
+    # Assign command-line arguments to variables
     nwk_file = sys.argv[1]
     alignment_file = sys.argv[2]
-    output_file = sys.argv[3]
+    names_file = sys.argv[3]
+    output_file = sys.argv[4]
     
-    extract_and_organize_sequences(nwk_file, alignment_file, output_file)
+    # Run the main function
+    extract_and_organize_sequences(nwk_file, alignment_file, names_file, output_file)
