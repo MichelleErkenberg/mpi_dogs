@@ -1,7 +1,7 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-export BASE_PATH="/home/michelle/github/mpi_dogs" 
+export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -31,5 +31,5 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #create phylogenetic tree for our dogs and the published dogs with a reference one
 #	bash tree/tree.sh
 
-#highlighting the differences between the dogs (see diff.sh for details)
+#highlighting the differences between the dogs and replacing the n's (see diff.sh for details)
 	bash diff/diff.sh
