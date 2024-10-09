@@ -31,10 +31,6 @@ echo "Script executed successfully. The alignment has been saved in 'msa/combine
 
 cat "$msa_dir/combined_pub.aln" "$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta" > "$msa_dir/combined_pub.ref.fasta"
 
-# remove combined_pub data afterwards
-
-rm "$msa_dir/combined_pub.*"
-
 #create a msa using MAFFT with reference dog NC_002008.4
 
 mafft "$msa_dir/combined_pub.ref.fasta" > "$msa_dir/combined_pub.ref.aln"
