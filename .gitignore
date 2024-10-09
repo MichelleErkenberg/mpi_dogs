@@ -15,7 +15,7 @@ cleaning/
 # Optionally, ignore specific file types that might be large or sensitive
 *.bam
 *.fastq
-*.fasta
+#*.fasta
 *.gz
 *.bai
 

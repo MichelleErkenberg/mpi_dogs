@@ -26,4 +26,10 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 #	bash msa/cutoff_seq.sh
 	
 	#all of your dogs + previously published ones + reference dog combined in one script each + msa
-	bash msa/msa.sh 
+#	bash msa/msa.sh 
+
+#create phylogenetic tree for our dogs and the published dogs with a reference one
+#	bash tree/tree.sh
+
+#highlighting the differences between the dogs (see diff.sh for details)
+	bash diff/diff.sh
