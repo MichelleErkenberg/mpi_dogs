@@ -21,3 +21,6 @@ python3 diff/replace_n.py names.txt "$OUTDIR/sequence_diff.csv" "$OUTDIR/replace
 
 #uses the replaced_n.csv to create a new .aln-file with replaced n's
 python3 diff/replaced_aln.py "$OUTDIR/replaced_n.csv" "$OUTDIR/related_seq.aln" "$OUTDIR/replaced_n.aln"  
+
+#write the mpi dog sequences with replaced n's into a new fasta 
+bash diff/mpi_fasta.sh

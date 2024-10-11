@@ -32,4 +32,5 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #	bash tree/tree.sh
 
 #highlighting the differences between the dogs (see diff.sh for details)
-	bash diff/diff.sh
+#	bash diff/diff.sh
+
