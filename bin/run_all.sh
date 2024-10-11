@@ -1,7 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+export BASE_PATH="/home/michelle/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -34,3 +35,6 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 #finding differences and replace the n's (also see diff.sh for more details)
 #	bash diff/diff.sh
 
+#using the ref dog genome for genome coordinates 
+mkdir -p "BASE_PATH/data/dog_samples/ref"
+python3 ref/ref_coor.py "$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta" "$BASE_PATH/data/dog_samples/diff/mpi_dogs_replaced_n.fasta" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv"
