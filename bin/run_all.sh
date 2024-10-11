@@ -31,3 +31,6 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 #create phylogenetic tree for our dogs and the published dogs with a reference one
 #	bash tree/tree.sh
 
+#finding differences and replace the n's (also see diff.sh for more details)
+#	bash diff/diff.sh
+
