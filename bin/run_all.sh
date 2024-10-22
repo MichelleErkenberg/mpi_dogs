@@ -1,8 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-#export BASE_PATH="/home/michelle/github/mpi_dogs" 
+#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+export BASE_PATH="/home/michelle/github/mpi_dogs(Copy_2024_10_22)" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -32,9 +32,9 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 #create phylogenetic tree for our dogs and the published dogs with a reference one
 #	bash tree/tree.sh
 
-#finding differences and replace the n's (also see diff.sh for more details)
-#	bash diff/diff.sh
+#finding differences and replace the n's (also see diff.sh for more details); it takes the latest aln so far and trims it to 16138bp; afterwards closely related dog sequences are extracted (manually) and differences are highlighted in an csv file; the n's from our dogs are than replaced (if possible) with the bases from the replated dogs; that leads to an csv file with replaced n's and in the long term to an fasta file with out dogs + replaced possions 
+	bash diff/diff.sh
 
 #using the ref dog genome for genome coordinates 
 #mkdir -p "BASE_PATH/data/dog_samples/ref"
-python3 ref/ref_coor.py "$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta" "$BASE_PATH/data/dog_samples/diff/mpi_dogs_replaced_n.fasta" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv"
+#python3 ref/ref_coor.py "$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta" "$BASE_PATH/data/dog_samples/diff/mpi_dogs_replaced_n.fasta" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv"
