@@ -1,46 +1,47 @@
 import sys
 import csv
 from Bio import AlignIO
-from Bio import SeqIO
 
-def process_alignment(ref_file, aln_file, output_file):
-    # Lese die Referenzsequenz
-    ref_record = next(SeqIO.parse(ref_file, "fasta"))
-    ref_seq = str(ref_record.seq)
-
-    # Lese das Alignment
+def process_alignment(aln_file, output_file, ref_id):
+    # Read the alignment
     alignment = AlignIO.read(aln_file, "fasta")
 
-    # Erstelle ein Dictionary für die Sequenzen
+    # Create a dictionary for the sequences
     sequences = {record.id: str(record.seq) for record in alignment}
 
-    # Öffne die Ausgabedatei
+    # Check if the reference ID is present in the alignment
+    if ref_id not in sequences:
+        print(f"Error: Reference sequence with ID '{ref_id}' not found in the alignment.")
+        sys.exit(1)
+
+    # Get the reference sequence from the alignment
+    ref_seq = sequences[ref_id]
+
+    # Open the output file
     with open(output_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
 
-        # Schreibe die Kopfzeile
-        header = ['Position', 'Reference'] + list(sequences.keys())
+        # Write the header with the reference ID in parentheses
+        header = ['Position', f'Reference ({ref_id})'] + [seq_id for seq_id in sequences if seq_id != ref_id]
         writer.writerow(header)
 
-        # Schreibe die Daten
+        # Write the data
         for i, ref_base in enumerate(ref_seq, start=1):
             row = [i, ref_base]
             for seq_id in sequences:
-                if i <= len(sequences[seq_id]):
+                if seq_id != ref_id:
                     row.append(sequences[seq_id][i-1])
-                else:
-                    row.append('')
             writer.writerow(row)
 
     print(f"Output written to {output_file}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python script.py <reference_file> <alignment_file> <output_file>")
+        print("Usage: python script.py <alignment_file> <output_file> <reference_sequence_id>")
         sys.exit(1)
 
-    ref_file = sys.argv[1]
-    aln_file = sys.argv[2]
-    output_file = sys.argv[3]
+    aln_file = sys.argv[1]
+    output_file = sys.argv[2]
+    ref_id = sys.argv[3]
 
-    process_alignment(ref_file, aln_file, output_file)
+    process_alignment(aln_file, output_file, ref_id)
