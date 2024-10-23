@@ -37,4 +37,4 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 
 #using the ref dog genome for genome coordinates 
 #mkdir -p "BASE_PATH/data/dog_samples/ref"
-python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/mpi_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4
+#python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/mpi_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4
