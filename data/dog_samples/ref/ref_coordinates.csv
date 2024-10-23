@@ -1520,7 +1520,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 1519,a,a,a,a,a,a,a,n,a,a,a
 1520,t,t,t,t,t,t,t,n,t,t,t
 1521,a,a,a,a,a,a,a,n,a,a,a
-1522,g,g,g,g,g,g,g,n,g,a,g
+1522,g,g,g,g,g,g,g,n,g,g,g
 1523,t,t,t,t,t,t,t,n,t,t,t
 1524,c,c,c,c,c,c,c,n,c,c,c
 1525,t,t,t,t,t,t,t,n,t,t,t
@@ -2677,7 +2677,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 2676,g,g,g,g,g,g,g,g,g,g,g
 2677,g,g,g,g,g,g,g,g,g,g,g
 2678,t,t,t,t,t,t,t,t,t,t,t
-2679,-,g,g,g,g,g,g,g,g,g,-
+2679,-,g,g,g,g,g,g,g,g,g,g
 2680,g,g,g,g,g,g,g,g,g,g,g
 2681,c,c,c,c,c,c,c,c,c,c,c
 2682,a,a,a,a,a,a,a,a,a,a,a
@@ -2757,7 +2757,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 2756,t,t,t,t,t,t,t,t,t,t,t
 2757,a,a,a,a,a,a,a,a,a,a,a
 2758,t,t,t,t,t,t,t,t,t,t,t
-2759,c,c,c,c,c,c,c,c,c,c,c
+2759,c,c,c,c,c,c,c,c,c,c,t
 2760,a,a,a,a,a,a,a,a,a,a,a
 2761,a,a,a,a,a,a,a,a,a,a,a
 2762,c,c,c,c,c,c,c,c,c,c,c
@@ -3258,7 +3258,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 3257,a,a,a,a,a,a,a,a,a,a,a
 3258,c,c,c,c,c,c,c,c,c,c,c
 3259,a,a,a,a,a,a,a,a,a,a,a
-3260,t,t,t,t,t,t,t,t,t,t,t
+3260,t,t,t,t,t,t,t,t,t,t,c
 3261,a,a,a,a,a,a,a,a,a,a,a
 3262,t,t,t,t,t,t,t,t,t,t,t
 3263,a,a,a,a,a,a,a,a,a,a,a
@@ -3675,7 +3675,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 3674,t,t,t,t,t,t,t,t,t,t,t
 3675,a,a,a,a,a,a,a,a,a,a,a
 3676,t,t,t,t,t,t,t,t,t,t,t
-3677,c,c,c,c,c,c,c,c,c,t,c
+3677,c,c,c,c,c,c,c,c,c,c,c
 3678,a,a,a,a,a,a,a,a,a,a,a
 3679,c,c,c,c,c,c,c,c,c,c,c
 3680,c,c,c,c,c,c,c,c,c,c,c
@@ -6337,7 +6337,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 6336,a,a,a,a,a,a,a,a,a,a,a
 6337,g,g,g,g,g,g,g,g,g,g,g
 6338,g,g,g,g,g,g,g,g,g,g,g
-6339,c,c,c,c,c,c,c,c,c,c,c
+6339,c,c,c,c,c,c,c,c,c,c,t
 6340,a,a,a,a,a,a,a,a,a,a,a
 6341,a,a,a,a,a,a,a,a,a,a,a
 6342,t,t,t,t,t,t,t,t,t,t,t
@@ -6682,7 +6682,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 6681,a,a,a,a,a,a,a,a,a,a,a
 6682,g,g,g,g,g,g,g,g,g,g,g
 6683,a,a,a,a,a,a,a,a,a,a,a
-6684,t,t,t,t,t,t,t,t,t,t,t
+6684,t,t,t,t,t,t,t,t,t,c,t
 6685,g,g,g,g,g,g,g,g,g,g,g
 6686,c,c,c,c,c,c,c,c,c,c,c
 6687,a,a,a,a,a,a,a,a,a,a,a
@@ -7160,7 +7160,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 7159,t,t,t,t,t,t,t,t,t,t,t
 7160,t,t,t,t,t,t,t,t,t,t,t
 7161,t,t,t,t,t,t,t,t,t,t,t
-7162,c,c,c,c,c,c,c,c,c,c,c
+7162,c,c,c,c,c,c,c,c,c,c,t
 7163,a,a,a,a,a,a,a,a,a,a,a
 7164,c,c,c,c,c,c,c,c,c,c,c
 7165,t,t,t,t,t,t,t,t,t,t,t
@@ -7382,7 +7382,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 7381,t,t,t,t,t,t,t,t,t,t,t
 7382,a,a,a,a,a,a,a,a,a,a,a
 7383,a,a,a,a,a,a,a,a,a,a,a
-7384,a,a,a,a,a,a,a,a,a,a,a
+7384,a,a,a,a,a,a,a,a,a,g,a
 7385,c,c,c,c,c,c,c,c,c,c,c
 7386,t,t,t,t,t,t,t,t,t,t,t
 7387,t,t,t,t,t,t,t,t,t,t,t
@@ -7836,7 +7836,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 7835,t,t,t,t,t,t,t,t,t,t,t
 7836,t,t,t,t,t,t,t,t,t,t,t
 7837,a,a,a,a,a,a,a,a,a,a,a
-7838,t,t,t,t,t,t,t,t,t,t,c
+7838,t,t,t,t,t,t,t,t,t,t,t
 7839,a,a,a,a,a,a,a,a,a,a,a
 7840,a,a,a,a,a,a,a,a,a,a,a
 7841,t,t,t,t,t,t,t,t,t,t,t
@@ -8789,7 +8789,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 8788,a,a,a,a,a,a,a,a,a,a,a
 8789,a,a,a,a,a,a,a,a,a,a,a
 8790,c,c,c,c,c,c,c,c,c,c,c
-8791,c,c,c,c,c,c,c,c,c,c,t
+8791,c,c,c,c,c,c,c,c,c,c,c
 8792,a,a,a,a,a,a,a,a,a,a,a
 8793,a,a,a,a,a,a,a,a,a,a,a
 8794,c,c,c,c,c,c,c,c,c,c,c
@@ -8835,7 +8835,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 8834,g,g,g,g,g,g,g,g,g,g,g
 8835,a,a,a,a,a,a,a,a,a,a,a
 8836,a,a,a,a,a,a,a,a,a,a,a
-8837,g,g,g,g,g,g,g,g,g,g,g
+8837,g,g,g,g,g,g,g,g,g,g,a
 8838,g,g,g,g,g,g,g,g,g,g,g
 8839,c,c,c,c,c,c,c,c,c,c,c
 8840,a,a,a,a,a,a,a,a,a,a,a
@@ -8849,7 +8849,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 8848,a,a,a,a,a,a,a,a,a,a,a
 8849,g,g,g,g,g,g,g,g,g,g,g
 8850,g,g,g,g,g,g,g,g,g,g,g
-8851,a,a,a,a,a,a,a,a,a,g,a
+8851,a,a,a,a,a,a,a,a,a,a,a
 8852,c,c,c,c,c,c,c,c,c,c,c
 8853,a,a,a,a,a,a,a,a,a,a,a
 8854,t,t,t,t,t,t,t,t,t,t,t
@@ -8983,7 +8983,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 8982,g,g,g,g,g,g,g,g,g,g,g
 8983,g,g,g,g,g,g,g,g,g,g,g
 8984,g,g,g,g,g,g,g,g,g,g,g
-8985,g,g,g,g,g,g,g,g,g,g,c
+8985,g,g,g,g,g,g,g,g,g,g,g
 8986,t,t,t,t,t,t,t,t,t,t,t
 8987,t,t,t,t,t,t,t,t,t,t,t
 8988,g,g,g,g,g,g,g,g,g,g,g
@@ -9912,8 +9912,8 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 9911,t,t,t,t,t,t,t,t,t,t,t
 9912,c,c,c,c,c,c,c,c,c,c,c
 9913,a,a,a,a,a,a,a,a,a,a,a
-9914,-,t,t,t,t,t,t,t,t,t,-
-9915,-,g,g,g,g,g,g,g,g,g,-
+9914,-,t,t,t,t,t,t,t,t,t,t
+9915,-,g,g,g,g,g,g,g,g,g,g
 9916,t,t,t,t,t,t,t,t,t,t,t
 9917,g,g,g,g,g,g,g,g,g,g,g
 9918,t,t,t,t,t,t,t,t,t,t,t
@@ -11909,7 +11909,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 11908,g,g,g,g,g,g,g,g,g,g,g
 11909,c,c,c,c,c,c,c,c,c,c,c
 11910,g,g,g,g,g,g,g,g,g,g,g
-11911,t,t,t,t,t,t,t,t,t,c,t
+11911,t,t,t,t,t,t,t,t,t,t,t
 11912,t,t,t,t,t,t,t,t,t,t,t
 11913,c,c,c,c,c,c,c,c,c,c,c
 11914,a,a,a,a,a,a,a,a,a,a,a
@@ -12301,7 +12301,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 12300,c,c,c,c,c,c,c,c,c,c,c
 12301,t,t,t,t,t,t,t,t,t,t,t
 12302,a,a,a,a,a,a,a,a,a,a,a
-12303,c,c,c,c,c,c,c,c,c,c,t
+12303,c,c,c,c,c,c,c,c,c,c,c
 12304,a,a,a,a,a,a,a,a,a,a,a
 12305,a,a,a,a,a,a,a,a,a,a,a
 12306,c,c,c,c,c,c,c,c,c,c,c
@@ -12406,7 +12406,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 12405,t,t,t,t,t,c,t,t,t,t,t
 12406,t,t,t,t,t,t,t,t,t,t,t
 12407,t,t,t,t,t,t,t,t,t,t,t
-12408,t,t,t,t,t,t,t,t,t,t,t
+12408,t,t,t,t,t,t,t,t,t,t,c
 12409,a,a,a,a,a,a,a,a,a,a,a
 12410,a,a,a,a,a,a,a,a,a,a,a
 12411,t,t,t,t,t,t,t,t,t,t,t
@@ -12547,7 +12547,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 12546,a,a,a,a,a,a,a,a,a,a,a
 12547,g,g,g,g,g,g,g,g,g,g,g
 12548,g,g,g,g,g,g,g,g,g,g,g
-12549,a,a,a,a,a,a,a,a,a,a,a
+12549,a,a,a,a,a,a,a,a,a,a,g
 12550,g,g,g,g,g,g,g,g,g,g,g
 12551,t,t,t,t,t,t,t,t,t,t,t
 12552,a,a,a,a,a,a,a,a,a,a,a
@@ -13749,7 +13749,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 13748,t,t,t,t,t,t,t,t,t,t,t
 13749,a,a,a,a,a,a,a,a,a,a,a
 13750,t,t,t,t,t,t,t,t,t,t,t
-13751,t,t,t,t,t,t,t,t,t,c,t
+13751,t,t,t,t,t,t,t,t,t,t,t
 13752,c,c,c,c,c,c,c,c,c,c,c
 13753,c,c,c,c,c,c,c,c,c,c,c
 13754,a,a,a,a,a,a,a,a,a,a,a
@@ -14182,7 +14182,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 14181,a,a,a,a,a,a,a,a,a,a,a
 14182,c,c,c,c,c,c,c,c,c,c,c
 14183,a,a,a,a,a,a,a,a,a,a,a
-14184,t,t,t,t,t,t,t,t,t,t,t
+14184,t,t,t,t,t,t,t,t,t,t,c
 14185,t,t,t,t,t,t,t,t,t,t,t
 14186,a,a,a,a,a,a,a,a,a,a,a
 14187,a,a,a,a,a,a,a,a,a,a,a
@@ -14536,7 +14536,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 14535,a,a,a,a,a,a,a,a,a,a,a
 14536,t,t,t,t,t,t,t,t,t,t,t
 14537,t,t,t,t,t,t,t,t,t,t,t
-14538,g,g,g,g,g,g,g,g,g,g,g
+14538,g,g,g,g,g,g,g,g,g,a,g
 14539,t,t,t,t,t,t,t,t,t,t,t
 14540,a,a,a,a,a,a,a,a,a,a,a
 14541,c,c,c,c,c,c,c,c,c,c,c
@@ -14765,7 +14765,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 14764,c,c,c,c,c,c,c,c,c,c,c
 14765,a,a,a,a,a,a,a,a,a,a,a
 14766,a,a,a,a,a,a,a,a,a,a,a
-14767,t,t,t,t,t,t,t,t,t,c,t
+14767,t,t,t,t,t,t,t,t,t,t,t
 14768,a,a,a,a,a,a,a,a,a,a,a
 14769,g,g,g,g,g,g,g,g,g,g,g
 14770,t,t,t,t,t,t,t,t,t,t,t
@@ -15477,7 +15477,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 15476,a,a,a,a,a,a,a,a,a,a,a
 15477,t,t,t,t,t,t,t,t,t,t,t
 15478,a,a,a,a,a,a,a,a,a,a,a
-15479,t,t,t,t,t,t,t,t,t,t,t
+15479,t,t,t,t,t,t,t,t,t,c,t
 15480,a,a,a,a,a,a,a,a,a,a,a
 15481,t,t,t,t,t,t,t,t,t,t,t
 15482,t,t,t,t,t,t,t,t,t,t,t
@@ -15641,7 +15641,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 15640,t,t,t,t,t,t,t,t,t,t,t
 15641,c,c,c,c,c,c,c,c,c,c,c
 15642,t,t,t,t,t,t,t,t,t,t,t
-15643,t,t,g,g,a,a,t,t,g,a,a
+15643,t,t,g,g,a,a,t,t,g,a,g
 15644,t,t,t,t,t,t,t,t,t,t,t
 15645,c,c,c,c,c,c,c,c,c,c,c
 15646,a,a,a,a,a,a,a,a,a,a,a
@@ -15752,7 +15752,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 15751,a,a,a,a,a,a,a,a,a,a,a
 15752,t,t,t,t,t,t,t,t,t,t,t
 15753,a,a,a,a,a,a,a,a,a,a,a
-15754,c,c,c,c,c,c,c,c,c,c,c
+15754,c,c,c,c,c,c,c,c,c,t,c
 15755,t,t,t,t,t,t,t,t,t,t,t
 15756,a,a,a,a,a,a,a,a,a,a,a
 15757,a,a,a,a,a,a,a,a,a,a,a
@@ -16027,7 +16027,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 16026,t,t,t,t,t,t,t,t,t,t,t
 16027,a,a,a,a,a,a,a,a,a,a,a
 16028,a,a,a,a,a,a,a,a,a,a,a
-16029,t,c,t,t,t,t,t,c,t,t,c
+16029,t,c,t,t,t,t,t,c,t,c,c
 16030,g,g,g,g,g,g,g,g,g,g,g
 16031,c,c,c,c,c,c,c,c,c,c,c
 16032,a,a,a,a,a,a,a,a,a,a,a
@@ -16132,7 +16132,7 @@ Position,Reference (NC_002008.4),Anda,Cami,Charlie,Fritzy,Heidi,Lily,ThorA,ThorB
 16131,a,a,a,a,a,a,a,a,a,a,a
 16132,g,g,a,g,g,g,g,g,a,g,g
 16133,g,g,g,g,g,g,g,g,g,g,g
-16134,g,-,-,-,-,-,-,-,-,-,g
+16134,g,-,-,-,-,-,-,-,-,-,-
 16135,t,-,-,-,-,-,-,-,-,-,-
 16136,a,-,-,-,-,-,-,-,-,-,-
 16137,c,-,-,-,-,-,-,-,-,-,-

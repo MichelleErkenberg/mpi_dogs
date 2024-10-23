@@ -33,8 +33,8 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #	bash tree/tree.sh
 
 #finding differences and replace the n's (also see diff.sh for more details); it takes the latest aln so far and trims it to 16138bp; afterwards closely related dog sequences are extracted (manually) and differences are highlighted in an csv file; the n's from our dogs are than replaced (if possible) with the bases from the replated dogs; that leads to an csv file with replaced n's and in the long term to an fasta file with out dogs + replaced possions 
-#	bash diff/diff.sh
+	bash diff/diff.sh
 
 #using the ref dog genome for genome coordinates 
 #mkdir -p "BASE_PATH/data/dog_samples/ref"
-#python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/mpi_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4
+python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/mpi_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4
