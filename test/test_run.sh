@@ -21,13 +21,9 @@ cat data/ref.fasta data/mpi_replaced_n.fasta > data/mpi_ref.fasta
 #align ref and mpi dog
 mafft data/mpi_ref.fasta > data/mpi_ref.aln
 
-#trying alignment using clustal omega instate of mafft
-clustalo -i data/mpi_ref.fasta -o data/mpi_ref_omega.aln --outfmt=clu
-
 #references dog coordinates
 python3 ref_coor.py data/mpi_ref.aln data/ref_coordinates.csv Reference fasta
 
-#using the clustal omega alignment
-python3 ref_coor.py data/mpi_ref_omega.aln data/ref_coordinates_omega.csv Reference clustal
+
 
 
