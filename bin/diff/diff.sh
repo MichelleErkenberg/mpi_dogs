@@ -28,7 +28,7 @@ python3 diff/replaced_n_fasta.py "$OUTDIR/replaced_seq.related_n.csv" "$OUTDIR/r
 seqkit grep -f names.txt "$OUTDIR/replaced_seq.related_n.fasta" > "$OUTDIR/replaced_seq.related_n.mpi_dogs.fasta"
 
 #add the ref dog to this fasta
-cat "$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta" "$OUTDIR/replaced_seq.related_n.mpi_dogs.fasta" > "$OUTDIR/mpi_ref.fasta"
+cat "$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta" "$OUTDIR/replaced_seq.related_n.mpi_dogs.fasta" > "$OUTDIR/replaced_seq.related_n.mpi_dogs.added_ref.fasta"
 
 #renaming the reference sequence into just NC_002008.4
 sed -i 's/>NC_002008\.4 Canis lupus familiaris mitochondrion, complete genome/>NC_002008.4/' "$OUTDIR/mpi_ref.fasta"
