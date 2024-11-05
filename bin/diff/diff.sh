@@ -12,9 +12,6 @@ bash diff/trim_msa.sh
 python3 diff/extract_sequences.py "$OUTDIR/combined_pub.ref.trimmed.aln" diff/related.txt "$OUTDIR/related_seq.fasta"
 mafft "$OUTDIR/related_seq.fasta" > "$OUTDIR/related_seq.aln"
 
-#creating .csv-files to highlight variations between the dogs, that isn't really 
-#python3 diff/dog_vari.py "$OUTDIR/related_seq.aln" "$OUTDIR/sequence_diff.csv"
-
 #write the aln file into a csv file to replace in the n's afterwards in this file
 python3 diff/aln_to_csv.py "$OUTDIR/related_seq.aln" "$OUTDIR/related_seq.csv"
 
