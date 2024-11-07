@@ -12,7 +12,7 @@ output_file="$2"
 # Shift the first two arguments out of the list 
 shift 2
 
-# Define the columns to extract; first coloum is fixed and get allways extracted (reference coordinates); and additional arguments can be extracted (defined in the real run of the script)
+# Define the columns to extract; first column is fixed and get always extracted (reference coordinates); and additional arguments can be extracted (defined in the real run of the script)
 columns_to_extract=("1" "$@")
 
 # Function to extract columns from a CSV file
