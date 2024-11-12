@@ -33,6 +33,7 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_1/5dogs.csv" "$OUTDI
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_1/5dogs.csv" "$OUTDIR/office_1/5dogs.Vito.csv" "Vito"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_1/5dogs.csv" "$OUTDIR/office_1/5dogs.Urza.csv" "Urza"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_1/5dogs.csv" "$OUTDIR/office_1/5dogs.Fritzy.csv" "Fritzy"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_1/5dogs.csv" "$OUTDIR/office_1/5dogs.Cami.csv" "Cami"
 
 # comparing all the dogs in office 2 for 2 dogs
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/2dogs.csv" "$OUTDIR/office_2/2dogs.Lily.csv" "Lily"
@@ -41,3 +42,5 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/2dogs.csv" "$OUTDI
 # comparing all the dogs in office 2 for 3 dogs
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/3dogs.csv" "$OUTDIR/office_2/3dogs.Lily.csv" "Lily"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/3dogs.csv" "$OUTDIR/office_2/3dogs.ThorA.csv" "ThorA"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/3dogs.csv" "$OUTDIR/office_2/3dogs.Cami.csv" "Cami"
+

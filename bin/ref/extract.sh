@@ -19,8 +19,19 @@ columns_to_extract=("1" "$@")
 extract_columns() {
     local columns=$(IFS=,; echo "${columns_to_extract[*]}")
     
-# Use csvcut to extract the specified columns and save the result to the output file 
-    csvcut -c "$columns" "$input_file" > "$output_file"
+    # Use csvcut to extract the specified columns and save the result to a temporary file
+    temp_file=$(mktemp)
+    csvcut -c "$columns" "$input_file" > "$temp_file"
+    
+    # Filter out lines containing 'n', except for the header
+    {
+        head -n 1 "$temp_file"
+        tail -n +2 "$temp_file" | grep -v 'n'
+    } > "$output_file"
+    
+    # Remove the temporary file
+    rm "$temp_file"
+    
     echo "Extraction completed. Result saved in $output_file"
 }
 
@@ -33,3 +44,6 @@ fi
 # Perform the extraction
 extract_columns
 
+# Display the first few lines of the output file
+echo "First 10 lines of output file:"
+head -n 10 "$output_file"
