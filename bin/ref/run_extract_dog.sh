@@ -18,8 +18,16 @@ bash "$extract_script" "$FILE" "$OUTDIR/office_1/5dogs.csv" "Heidi" "Vito" "Urza
 # first extraction for office 2 with 2 dogs
 bash "$extract_script" "$FILE" "$OUTDIR/office_2/2dogs.csv" "Lily" "ThorA"
 
-# second extraction for office 2 with 3 dogs (Cami as an outgroup)
+# 2nd extraction for office 2 with 3 dogs (Cami as an outgroup) 
 bash "$extract_script" "$FILE" "$OUTDIR/office_2/3dogs.csv" "Lily" "ThorA" "Cami"
+
+#Anda as a substitute for ThorA
+mkdir -p "$OUTDIR/office_2/Anda"
+# 3rd extraction for office 2 with 2 dogs, using Anda as a substitute for ThorA
+bash "$extract_script" "$FILE" "$OUTDIR/office_2/Anda/2dogs_Anda.as.ThorA.csv" "Lily" "Anda"
+
+# 4th extraction for office 2 with 3 dogs (Cami as an outgroup) using Anda as a substitute for ThorA
+bash "$extract_script" "$FILE" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.csv" "Lily" "Anda" "Cami"
 echo "All extractions completed."
 
 # Comparing all the dogs in office 1 for 4 dogs
@@ -44,3 +52,12 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/3dogs.csv" "$OUTDI
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/3dogs.csv" "$OUTDIR/office_2/3dogs.ThorA.csv" "ThorA"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/3dogs.csv" "$OUTDIR/office_2/3dogs.Cami.csv" "Cami"
 
+#Anda as a substitute for ThorA
+# comparing all the dogs in office 2 for 2 dogs
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/Anda/2dogs_Anda.as.ThorA.csv" "$OUTDIR/office_2/Anda/2dogs_Anda.as.ThorA.Lily.csv" "Lily"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/Anda/2dogs_Anda.as.ThorA.csv" "$OUTDIR/office_2/Anda/2dogs_Anda.as.ThorA.Anda.csv" "Anda"
+
+# comparing all the dogs in office 2 for 3 dogs
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.csv" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.Lily.csv" "Lily"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.csv" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.Anda.csv" "Anda"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.csv" "$OUTDIR/office_2/Anda/3dogs_Anda.as.ThorA.Cami.csv" "Cami"
