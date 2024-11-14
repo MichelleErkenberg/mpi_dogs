@@ -40,4 +40,8 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
 
 #dogs were living in different offices, this script creates files with just the dogs that lived together 
-bash ref/run_extract_dog.sh 
+#bash ref/run_extract_dog.sh 
+
+#finding the private position for our dogs in the environment data
+mkdir -p "$BASE_PATH/data/dog_samples/env_bam"
+python3 env_bam/bam_finder.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/*.bam" "$BASE_PATH/data/dog_samples/env_bam/env_data" Heidi
