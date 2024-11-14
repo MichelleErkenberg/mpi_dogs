@@ -1,8 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-export BASE_PATH="/home/michelle/github/mpi_dogs" 
+export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+#export BASE_PATH="/home/michelle/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -44,4 +44,4 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 
 #finding the private position for our dogs in the environment data
 mkdir -p "$BASE_PATH/data/dog_samples/env_bam"
-python3 env_bam/bam_finder.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/*.bam" "$BASE_PATH/data/dog_samples/env_bam/env_data" Heidi
+python3 env_bam/bam_finder.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae/sample_10.Canidae.Canis_lupus_familiaris_deduped_bedfiltered.bam" "$BASE_PATH/data/dog_samples/env_bam/env_data" Heidi
