@@ -1,0 +1,346 @@
+Sample,Position,Matches,Total Reads,Expected Nucleotide,Nucleotides Found
+sample_10,1662,105,410,T,"G, A, T, C"
+sample_10,4136,1490,5887,T,"G, A, T, C"
+sample_10,4170,927,7952,G,"G, A, T, C"
+sample_10,4573,512,1988,C,"G, A, T, C"
+sample_10,5856,3623,11966,T,"G, A, T, C"
+sample_10,6519,318,1358,A,"G, A, T, C"
+sample_10,7924,940,3353,C,"G, A, T, C"
+sample_10,9839,2584,7786,A,"G, A, T, C"
+sample_10,10350,125,419,T,"G, A, T, C"
+sample_10,10617,121,1035,G,"G, A, T, C"
+sample_10,11176,1559,11386,G,"G, A, T, C"
+sample_10,12067,906,2930,A,"G, A, T, C"
+sample_10,12405,6569,22260,C,"G, A, T, C"
+sample_10,15487,3233,10955,T,"G, A, T, C"
+,,,,,
+sample_11,1662,136,534,T,"G, A, T, C"
+sample_11,4136,367,1451,T,"G, A, T, C"
+sample_11,4170,280,2595,G,"G, A, T, C"
+sample_11,4573,243,905,C,"G, A, T, C"
+sample_11,5856,1013,3371,T,"G, A, T, C"
+sample_11,6519,173,749,A,"G, A, T, C"
+sample_11,7924,66,248,C,"G, A, T, C"
+sample_11,9839,1378,4267,A,"G, A, T, C"
+sample_11,10350,0,0,T,
+sample_11,10617,53,436,G,"G, A, T, C"
+sample_11,11176,783,5778,G,"G, A, T, C"
+sample_11,12067,126,450,A,"G, A, T, C"
+sample_11,12405,2145,7097,C,"G, A, T, C"
+sample_11,15487,1080,3783,T,"G, A, T, C"
+,,,,,
+sample_12,1662,188,716,T,"G, A, T, C"
+sample_12,4136,1218,4745,T,"G, A, T, C"
+sample_12,4170,694,5954,G,"G, A, T, C"
+sample_12,4573,510,1891,C,"G, A, T, C"
+sample_12,5856,2843,9321,T,"G, A, T, C"
+sample_12,6519,445,1792,A,"G, A, T, C"
+sample_12,7924,460,1700,C,"G, A, T, C"
+sample_12,9839,3027,9389,A,"G, A, T, C"
+sample_12,10350,296,964,T,"G, A, T, C"
+sample_12,10617,108,1046,G,"G, A, T, C"
+sample_12,11176,921,6912,G,"G, A, T, C"
+sample_12,12067,240,785,A,"G, A, T, C"
+sample_12,12405,3920,13459,C,"G, A, T, C"
+sample_12,15487,2566,8798,T,"G, A, T, C"
+,,,,,
+sample_13,1662,45,184,T,"G, A, T, C"
+sample_13,4136,226,902,T,"G, A, T, C"
+sample_13,4170,124,1138,G,"G, A, T, C"
+sample_13,4573,57,211,C,"G, A, T, C"
+sample_13,5856,139,452,T,"G, A, T, C"
+sample_13,6519,59,237,A,"G, A, T, C"
+sample_13,7924,248,903,C,"G, A, T, C"
+sample_13,9839,354,1077,A,"G, A, T, C"
+sample_13,10350,0,0,T,
+sample_13,10617,0,0,G,
+sample_13,11176,314,2341,G,"G, A, T, C"
+sample_13,12067,115,422,A,"G, A, T, C"
+sample_13,12405,936,3273,C,"G, A, T, C"
+sample_13,15487,645,2248,T,"G, A, T, C"
+,,,,,
+sample_14,1662,129,501,T,"G, A, T, C"
+sample_14,4136,1024,4140,T,"G, A, T, C"
+sample_14,4170,608,5243,G,"G, A, T, C"
+sample_14,4573,235,845,C,"G, A, T, C"
+sample_14,5856,2522,8333,T,"G, A, T, C"
+sample_14,6519,331,1355,A,"G, A, T, C"
+sample_14,7924,387,1377,C,"G, A, T, C"
+sample_14,9839,2887,8770,A,"G, A, T, C"
+sample_14,10350,87,279,T,"G, A, T, C"
+sample_14,10617,134,1059,G,"G, A, T, C"
+sample_14,11176,1104,8088,G,"G, A, T, C"
+sample_14,12067,479,1617,A,"G, A, T, C"
+sample_14,12405,3983,13538,C,"G, A, T, C"
+sample_14,15487,1335,4769,T,"G, A, T, C"
+,,,,,
+sample_15,1662,486,1868,T,"G, A, T, C"
+sample_15,4136,2252,8911,T,"G, A, T, C"
+sample_15,4170,1110,9598,G,"G, A, T, C"
+sample_15,4573,351,1294,C,"G, A, T, C"
+sample_15,5856,5496,18116,T,"G, A, T, C"
+sample_15,6519,734,3052,A,"G, A, T, C"
+sample_15,7924,971,3602,C,"G, A, T, C"
+sample_15,9839,4949,15443,A,"G, A, T, C"
+sample_15,10350,334,1063,T,"G, A, T, C"
+sample_15,10617,103,858,G,"G, A, T, C"
+sample_15,11176,2408,17609,G,"G, A, T, C"
+sample_15,12067,1185,4021,A,"G, A, T, C"
+sample_15,12405,10383,35018,C,"G, A, T, C"
+sample_15,15487,6048,20945,T,"G, A, T, C"
+,,,,,
+sample_17,1662,131,507,T,"G, A, T, C"
+sample_17,4136,817,3301,T,"G, A, T, C"
+sample_17,4170,589,5309,G,"G, A, T, C"
+sample_17,4573,174,642,C,"G, A, T, C"
+sample_17,5856,1265,4234,T,"G, A, T, C"
+sample_17,6519,623,2604,A,"G, A, T, C"
+sample_17,7924,430,1555,C,"G, A, T, C"
+sample_17,9839,3160,9504,A,"G, A, T, C"
+sample_17,10350,500,1589,T,"G, A, T, C"
+sample_17,10617,178,1485,G,"G, A, T, C"
+sample_17,11176,1716,12800,G,"G, A, T, C"
+sample_17,12067,496,1696,A,"G, A, T, C"
+sample_17,12405,7299,25120,C,"G, A, T, C"
+sample_17,15487,3390,11704,T,"G, A, T, C"
+,,,,,
+sample_16,1662,0,0,T,
+sample_16,4136,90,362,T,"G, A, T, C"
+sample_16,4170,76,642,G,"G, A, T, C"
+sample_16,4573,43,160,C,"G, A, T, C"
+sample_16,5856,167,556,T,"G, A, T, C"
+sample_16,6519,0,0,A,
+sample_16,7924,61,213,C,"G, A, T, C"
+sample_16,9839,436,1405,A,"G, A, T, C"
+sample_16,10350,0,0,T,
+sample_16,10617,0,0,G,
+sample_16,11176,297,2280,G,"G, A, T, C"
+sample_16,12067,63,215,A,"G, A, T, C"
+sample_16,12405,676,2380,C,"G, A, T, C"
+sample_16,15487,346,1218,T,"G, A, T, C"
+,,,,,
+sample_18,1662,0,0,T,
+sample_18,4136,111,455,T,"G, A, T, C"
+sample_18,4170,51,455,G,"G, A, T, C"
+sample_18,4573,41,155,C,"G, A, T, C"
+sample_18,5856,0,0,T,
+sample_18,6519,0,0,A,
+sample_18,7924,69,281,C,"G, A, T, C"
+sample_18,9839,0,0,A,
+sample_18,10350,0,0,T,
+sample_18,10617,0,0,G,
+sample_18,11176,62,403,G,"G, A, T, C"
+sample_18,12067,0,0,A,
+sample_18,12405,147,516,C,"G, A, T, C"
+sample_18,15487,49,185,T,"G, A, T, C"
+,,,,,
+sample_19,1662,0,0,T,
+sample_19,4136,341,1342,T,"G, A, T, C"
+sample_19,4170,188,1584,G,"G, A, T, C"
+sample_19,4573,0,0,C,
+sample_19,5856,274,926,T,"G, A, T, C"
+sample_19,6519,28,133,A,"G, A, T, C"
+sample_19,7924,0,0,C,
+sample_19,9839,780,2398,A,"G, A, T, C"
+sample_19,10350,96,312,T,"G, A, T, C"
+sample_19,10617,0,0,G,
+sample_19,11176,438,3170,G,"G, A, T, C"
+sample_19,12067,0,0,A,
+sample_19,12405,1314,4495,C,"G, A, T, C"
+sample_19,15487,806,2797,T,"G, A, T, C"
+,,,,,
+sample_1,1662,5020,19066,T,"G, A, T, C"
+sample_1,4136,54346,214489,T,"G, A, T, C"
+sample_1,4170,37034,316483,G,"G, A, T, C"
+sample_1,4573,12258,44543,C,"G, A, T, C"
+sample_1,5856,46268,151924,T,"G, A, T, C"
+sample_1,6519,8947,36887,A,"G, A, T, C"
+sample_1,7924,35543,127979,C,"G, A, T, C"
+sample_1,9839,86118,260573,A,"G, A, T, C"
+sample_1,10350,8343,26728,T,"G, A, T, C"
+sample_1,10617,5301,43699,G,"G, A, T, C"
+sample_1,11176,52312,377152,G,"G, A, T, C"
+sample_1,12067,12876,43262,A,"G, A, T, C"
+sample_1,12405,175095,586870,C,"G, A, T, C"
+sample_1,15487,91995,315717,T,"G, A, T, C"
+,,,,,
+sample_20,1662,0,0,T,
+sample_20,4136,0,0,T,
+sample_20,4170,0,0,G,
+sample_20,4573,0,0,C,
+sample_20,5856,0,0,T,
+sample_20,6519,0,0,A,
+sample_20,7924,0,0,C,
+sample_20,9839,0,0,A,
+sample_20,10350,0,0,T,
+sample_20,10617,0,0,G,
+sample_20,11176,0,0,G,
+sample_20,12067,0,0,A,
+sample_20,12405,0,0,C,
+sample_20,15487,0,0,T,
+,,,,,
+sample_21,1662,0,0,T,
+sample_21,4136,0,0,T,
+sample_21,4170,0,0,G,
+sample_21,4573,0,0,C,
+sample_21,5856,0,0,T,
+sample_21,6519,37,168,A,"G, A, T, C"
+sample_21,7924,0,0,C,
+sample_21,9839,212,645,A,"G, A, T, C"
+sample_21,10350,72,218,T,"G, A, T, C"
+sample_21,10617,0,0,G,
+sample_21,11176,56,438,G,"G, A, T, C"
+sample_21,12067,0,0,A,
+sample_21,12405,195,635,C,"G, A, T, C"
+sample_21,15487,220,722,T,"G, A, T, C"
+,,,,,
+sample_22,1662,334,1279,T,"G, A, T, C"
+sample_22,4136,1676,6613,T,"G, A, T, C"
+sample_22,4170,918,7906,G,"G, A, T, C"
+sample_22,4573,1334,4899,C,"G, A, T, C"
+sample_22,5856,5841,19386,T,"G, A, T, C"
+sample_22,6519,743,3075,A,"G, A, T, C"
+sample_22,7924,658,2527,C,"G, A, T, C"
+sample_22,9839,6091,19033,A,"G, A, T, C"
+sample_22,10350,806,2591,T,"G, A, T, C"
+sample_22,10617,280,2409,G,"G, A, T, C"
+sample_22,11176,1674,12326,G,"G, A, T, C"
+sample_22,12067,1499,5219,A,"G, A, T, C"
+sample_22,12405,10559,36164,C,"G, A, T, C"
+sample_22,15487,6272,21961,T,"G, A, T, C"
+,,,,,
+sample_23,1662,516,2014,T,"G, A, T, C"
+sample_23,4136,4660,18444,T,"G, A, T, C"
+sample_23,4170,2589,22363,G,"G, A, T, C"
+sample_23,4573,1054,3897,C,"G, A, T, C"
+sample_23,5856,8498,28080,T,"G, A, T, C"
+sample_23,6519,767,3085,A,"G, A, T, C"
+sample_23,7924,1317,4847,C,"G, A, T, C"
+sample_23,9839,7359,23023,A,"G, A, T, C"
+sample_23,10350,613,1967,T,"G, A, T, C"
+sample_23,10617,152,1265,G,"G, A, T, C"
+sample_23,11176,4019,29581,G,"G, A, T, C"
+sample_23,12067,1705,5729,A,"G, A, T, C"
+sample_23,12405,12961,44752,C,"G, A, T, C"
+sample_23,15487,8698,30459,T,"G, A, T, C"
+,,,,,
+sample_24,1662,306,1199,T,"G, A, T, C"
+sample_24,4136,1459,5870,T,"G, A, T, C"
+sample_24,4170,934,8142,G,"G, A, T, C"
+sample_24,4573,521,2002,C,"G, A, T, C"
+sample_24,5856,3855,12864,T,"G, A, T, C"
+sample_24,6519,493,2058,A,"G, A, T, C"
+sample_24,7924,765,2980,C,"G, A, T, C"
+sample_24,9839,4422,13753,A,"G, A, T, C"
+sample_24,10350,194,621,T,"G, A, T, C"
+sample_24,10617,69,631,G,"G, A, T, C"
+sample_24,11176,1911,14125,G,"G, A, T, C"
+sample_24,12067,932,3197,A,"G, A, T, C"
+sample_24,12405,8309,27981,C,"G, A, T, C"
+sample_24,15487,4091,14432,T,"G, A, T, C"
+,,,,,
+sample_25,1662,61,221,T,"G, A, T, C"
+sample_25,4136,0,0,T,
+sample_25,4170,0,0,G,
+sample_25,4573,0,0,C,
+sample_25,5856,102,383,T,"G, A, T, C"
+sample_25,6519,0,0,A,
+sample_25,7924,73,274,C,"G, A, T, C"
+sample_25,9839,0,0,A,
+sample_25,10350,0,0,T,
+sample_25,10617,0,0,G,
+sample_25,11176,35,229,G,"G, A, T, C"
+sample_25,12067,0,0,A,
+sample_25,12405,255,853,C,"G, A, T, C"
+sample_25,15487,219,744,T,"G, A, T, C"
+,,,,,
+sample_26,1662,60,239,T,"G, A, T, C"
+sample_26,4136,317,1233,T,"G, A, T, C"
+sample_26,4170,138,1152,G,"G, A, T, C"
+sample_26,4573,121,458,C,"G, A, T, C"
+sample_26,5856,1290,4185,T,"G, A, T, C"
+sample_26,6519,118,467,A,"G, A, T, C"
+sample_26,7924,172,667,C,"G, A, T, C"
+sample_26,9839,684,2144,A,"G, A, T, C"
+sample_26,10350,205,655,T,"G, A, T, C"
+sample_26,10617,0,0,G,
+sample_26,11176,137,1003,G,"G, A, T, C"
+sample_26,12067,135,453,A,"G, A, T, C"
+sample_26,12405,1946,6645,C,"G, A, T, C"
+sample_26,15487,505,1724,T,"G, A, T, C"
+,,,,,
+sample_27,1662,0,0,T,
+sample_27,4136,233,924,T,"G, A, T, C"
+sample_27,4170,128,1134,G,"G, A, T, C"
+sample_27,4573,157,579,C,"G, A, T, C"
+sample_27,5856,1521,4980,T,"G, A, T, C"
+sample_27,6519,363,1462,A,"G, A, T, C"
+sample_27,7924,114,421,C,"G, A, T, C"
+sample_27,9839,1021,3136,A,"G, A, T, C"
+sample_27,10350,166,530,T,"G, A, T, C"
+sample_27,10617,18,162,G,"G, A, T, C"
+sample_27,11176,593,4511,G,"G, A, T, C"
+sample_27,12067,122,420,A,"G, A, T, C"
+sample_27,12405,2667,8810,C,"G, A, T, C"
+sample_27,15487,1194,4193,T,"G, A, T, C"
+,,,,,
+sample_28,1662,551,2134,T,"G, A, T, C"
+sample_28,4136,5056,20119,T,"G, A, T, C"
+sample_28,4170,2799,24284,G,"G, A, T, C"
+sample_28,4573,1199,4428,C,"G, A, T, C"
+sample_28,5856,9004,29744,T,"G, A, T, C"
+sample_28,6519,371,1507,A,"G, A, T, C"
+sample_28,7924,1145,4278,C,"G, A, T, C"
+sample_28,9839,8761,27047,A,"G, A, T, C"
+sample_28,10350,457,1486,T,"G, A, T, C"
+sample_28,10617,327,2809,G,"G, A, T, C"
+sample_28,11176,3915,28650,G,"G, A, T, C"
+sample_28,12067,2050,7098,A,"G, A, T, C"
+sample_28,12405,14380,48936,C,"G, A, T, C"
+sample_28,15487,9515,33431,T,"G, A, T, C"
+,,,,,
+sample_29,1662,0,0,T,
+sample_29,4136,61,222,T,"G, A, T, C"
+sample_29,4170,47,355,G,"G, A, T, C"
+sample_29,4573,0,0,C,
+sample_29,5856,73,236,T,"G, A, T, C"
+sample_29,6519,0,0,A,
+sample_29,7924,0,0,C,
+sample_29,9839,126,414,A,"G, A, T, C"
+sample_29,10350,0,0,T,
+sample_29,10617,0,0,G,
+sample_29,11176,142,1046,G,"G, A, T, C"
+sample_29,12067,0,0,A,
+sample_29,12405,76,234,C,"G, A, T, C"
+sample_29,15487,0,0,T,
+,,,,,
+sample_2,1662,613,2421,T,"G, A, T, C"
+sample_2,4136,7483,29833,T,"G, A, T, C"
+sample_2,4170,4442,38623,G,"G, A, T, C"
+sample_2,4573,1376,5124,C,"G, A, T, C"
+sample_2,5856,9681,31938,T,"G, A, T, C"
+sample_2,6519,1329,5550,A,"G, A, T, C"
+sample_2,7924,3120,11447,C,"G, A, T, C"
+sample_2,9839,12928,40129,A,"G, A, T, C"
+sample_2,10350,801,2567,T,"G, A, T, C"
+sample_2,10617,581,4905,G,"G, A, T, C"
+sample_2,11176,6690,48837,G,"G, A, T, C"
+sample_2,12067,2708,9066,A,"G, A, T, C"
+sample_2,12405,23859,81328,C,"G, A, T, C"
+sample_2,15487,17292,60015,T,"G, A, T, C"
+,,,,,
+sample_30,1662,0,0,T,
+sample_30,4136,0,0,T,
+sample_30,4170,0,0,G,
+sample_30,4573,0,0,C,
+sample_30,5856,0,0,T,
+sample_30,6519,0,0,A,
+sample_30,7924,0,0,C,
+sample_30,9839,0,0,A,
+sample_30,10350,0,0,T,
+sample_30,10617,0,0,G,
+sample_30,11176,0,0,G,
+sample_30,12067,0,0,A,
+sample_30,12405,0,0,C,
+sample_30,15487,0,0,T,
+,,,,,
