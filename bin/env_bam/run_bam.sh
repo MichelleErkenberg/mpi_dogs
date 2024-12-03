@@ -6,12 +6,13 @@ env_bam="$BASE_PATH/data/dog_samples/env_bam"
 
 #creating *.bam.bai data for every bam to process
 for bam in "$BASE_PATH/data/env_samples/Canidae/*.bam"
+do
 	if [ ! -f "${bam}.bai" ]; then
         echo "Indexing $bam..."
         samtools index "$bam"
-    else
+	else
         echo "Index for $bam already exists, skipping."
-    fi
+    	fi
 done
 
 echo "BAM indexing process completed. All BAM files are now indexed or were already indexed."

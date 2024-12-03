@@ -43,6 +43,8 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 #bash ref/run_extract_dog.sh 
 
 #finding the private position for our dogs in the environment data
+#samtools for bam to bai
+bash env_bam/bam_to_bai.sh "$BASE_PATH/data/env_samples/Canidae/*.bam"
 #old version
-python3 env_bam/bam_filder(old).py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae/sample_10.Canidae.Canis_lupus_familiaris_deduped_bedfiltered.bam" "$BASE_PATH/data/env_bam" "Heidi"
+python3 env_bam/bam_finder_old.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae/sample_10.Canidae.Canis_lupus_familiaris_deduped_bedfiltered.bam" "$BASE_PATH/data/env_bam" "Heidi"
 #bash env_bam/run_bam.sh
