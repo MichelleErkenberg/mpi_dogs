@@ -42,22 +42,25 @@ with open(args.output_file, mode='w', newline='') as outfile:
         results = []
 
         for position, expected_nucleotide in positions:
-            pileup_column = samfile.pileup(chromosome, position, position + 1)
+            pileup_column = samfile.pileup(chromosome, position - 1, position)  # Adjust for 0-based indexing
             
             match_count = 0
             total_count = 0
             nucleotides_at_position = set()
 
             for pileup in pileup_column:
-                total_count += pileup.n
-                
-                for pileup_read in pileup.pileups:
-                    if not pileup_read.is_del and not pileup_read.is_refskip:
-                        nucleotide = pileup_read.alignment.query_sequence[pileup_read.query_position].upper()
-                        nucleotides_at_position.add(nucleotide)
-                        
-                        if nucleotide == expected_nucleotide:
-                            match_count += 1
+                if pileup.pos == position - 1:  # Check if we're at the correct position
+                    total_count = pileup.n
+                    
+                    for pileup_read in pileup.pileups:
+                        if not pileup_read.is_del and not pileup_read.is_refskip:
+                            query_pos = pileup_read.query_position
+                            if query_pos is not None:
+                                nucleotide = pileup_read.alignment.query_sequence[query_pos].upper()
+                                nucleotides_at_position.add(nucleotide)
+                                
+                                if nucleotide == expected_nucleotide:
+                                    match_count += 1
 
             results.append({
                 'Sample': sample_name,
