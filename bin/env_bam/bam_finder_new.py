@@ -3,6 +3,14 @@ import csv
 import argparse
 import glob
 import os
+import re
+
+# Function to sort sample names numerically
+def sort_sample_names(name):
+    match = re.search(r'sample_(\d+)', name)
+    if match:
+        return int(match.group(1))
+    return 0
 
 # Step 1: Set up argument parsing
 parser = argparse.ArgumentParser(description="Search multiple BAM files using positions from a CSV file.")
@@ -23,8 +31,9 @@ with open(args.input_csv, mode='r') as infile:
         expected_nucleotide = row[args.query_column].upper()
         positions.append((position, expected_nucleotide))
 
-# Step 3: Get all BAM files in the specified directory
+# Step 3: Get all BAM files in the specified directory and sort them
 bam_files = glob.glob(os.path.join(args.bam_directory, "*.bam"))
+bam_files.sort(key=lambda x: sort_sample_names(os.path.basename(x)))
 
 # Step 4: Process each BAM file and write results to the output CSV
 with open(args.output_file, mode='w', newline='') as outfile:
