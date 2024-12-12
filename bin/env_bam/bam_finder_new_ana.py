@@ -19,6 +19,7 @@ parser.add_argument('bam_directory', type=str, help='The directory containing BA
 parser.add_argument('output_file', type=str, help='The output CSV file.')
 parser.add_argument('query_column', type=str, help='The name of the column to query for expected nucleotides.')
 parser.add_argument('--chromosome', type=str, default=None, help='The chromosome name to use. If not provided, will use the first chromosome in each BAM file.')
+parser.add_argument('--quality_threshold', type=int, default=20, help='The quality threshold for base calls. Default is 20.')
 
 args = parser.parse_args()
 
@@ -37,7 +38,7 @@ bam_files.sort(key=lambda x: sort_sample_names(os.path.basename(x)))
 
 # Step 4: Process each BAM file and write results to the output CSV
 with open(args.output_file, mode='w', newline='') as outfile:
-    fieldnames = ['Sample', 'Chromosome', 'Position', 'Matches', 'Total Reads', 'Expected Nucleotide', 'Nucleotides Found']
+    fieldnames = ['Sample', 'Chromosome', 'Position', 'Matches', 'Total Reads', 'Expected Nucleotide', 'Nucleotides Found', 'Deletions', 'Insertions', 'N_count', 'Low_quality', 'Softclipped']
     writer = csv.DictWriter(outfile, fieldnames=fieldnames)
     writer.writeheader()
 
@@ -53,48 +54,89 @@ with open(args.output_file, mode='w', newline='') as outfile:
         else:
             chromosome = next(iter(samfile.references))  # Use the first chromosome in the BAM file
         
+        results = []
+
         for position, expected_nucleotide in positions:
             try:
                 pileup_column = samfile.pileup(chromosome, position - 1, position)  # Adjust for 0-based indexing
                 
                 match_count = 0
                 total_count = 0
-                nucleotides_at_position = {}
+                nucleotides_at_position = set()
+                deletions = 0
+                insertions = 0
+                n_count = 0
+                low_quality = 0
+                softclipped = 0
 
                 for pileup in pileup_column:
                     if pileup.pos == position - 1:  # Check if we're at the correct position
+                        total_count = pileup.n
+                        
                         for pileup_read in pileup.pileups:
-                            if not pileup_read.is_del and not pileup_read.is_refskip:
+                            if pileup_read.is_del:
+                                deletions += 1
+                            elif pileup_read.is_refskip:
+                                continue
+                            else:
                                 query_pos = pileup_read.query_position
                                 if query_pos is not None:
                                     nucleotide = pileup_read.alignment.query_sequence[query_pos].upper()
-                                    nucleotides_at_position[nucleotide] = nucleotides_at_position.get(nucleotide, 0) + 1
-                                    total_count += 1
+                                    nucleotides_at_position.add(nucleotide)
                                     
-                                    if nucleotide == expected_nucleotide:
+                                    if nucleotide == 'N':
+                                        n_count += 1
+                                    elif pileup_read.alignment.query_qualities[query_pos] < args.quality_threshold:
+                                        low_quality += 1
+                                    elif nucleotide == expected_nucleotide:
                                         match_count += 1
+                                
+                                if pileup_read.indel > 0:
+                                    insertions += 1
+                            
+                            if pileup_read.alignment.cigartuples[0][0] == 4:  # Softclipped at start
+                                softclipped += 1
+                            if pileup_read.alignment.cigartuples[-1][0] == 4:  # Softclipped at end
+                                softclipped += 1
 
-                writer.writerow({
+                results.append({
                     'Sample': sample_name,
                     'Chromosome': chromosome,
                     'Position': position,
                     'Matches': match_count,
                     'Total Reads': total_count,
                     'Expected Nucleotide': expected_nucleotide,
-                    'Nucleotides Found': ', '.join([f"{nuc}:{count}" for nuc, count in nucleotides_at_position.items()])
+                    'Nucleotides Found': ', '.join(nucleotides_at_position),
+                    'Deletions': deletions,
+                    'Insertions': insertions,
+                    'N_count': n_count,
+                    'Low_quality': low_quality,
+                    'Softclipped': softclipped
                 })
             except ValueError:
                 # This will catch cases where the chromosome or position is not found in the BAM file
-                writer.writerow({
+                results.append({
                     'Sample': sample_name,
                     'Chromosome': chromosome,
                     'Position': position,
                     'Matches': 0,
                     'Total Reads': 0,
                     'Expected Nucleotide': expected_nucleotide,
-                    'Nucleotides Found': 'Position not found'
+                    'Nucleotides Found': 'Position not found',
+                    'Deletions': 0,
+                    'Insertions': 0,
+                    'N_count': 0,
+                    'Low_quality': 0,
+                    'Softclipped': 0
                 })
 
         samfile.close()
+
+        # Write results for this sample
+        for result in results:
+            writer.writerow(result)
+        
+        # Add an empty row between samples
+        writer.writerow({})
 
 print(f"Processing complete. Results saved to {args.output_file}")

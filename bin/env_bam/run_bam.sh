@@ -7,7 +7,7 @@ export bam_file="$BASE_PATH/data/env_samples/quicksand.v2/out/Canidae/fixed/3-de
 office_file="$BASE_PATH/data/dog_samples/ref/"
 
 #creating *.bam.bai data for every bam to process
-bash env_bam/bam_to_bai.sh
+#bash env_bam/bam_to_bai.sh
 
 #creating seperated file for our dogs to structure
 #mkdir -p "$env_bam/Heidi"
