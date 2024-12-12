@@ -3,7 +3,7 @@
 #creating and define new env_bam file as csv output file
 mkdir -p "$BASE_PATH/data/dog_samples/env_bam"
 env_bam="$BASE_PATH/data/dog_samples/env_bam"
-bam_file="$BASE_PATH/data/env_samples/Canidae/"
+export bam_file="$BASE_PATH/data/env_samples/quicksand.v2/out/Canidae/fixed/3-deduped/"
 office_file="$BASE_PATH/data/dog_samples/ref/"
 
 #creating *.bam.bai data for every bam to process

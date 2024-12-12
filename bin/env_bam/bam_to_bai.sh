@@ -1,8 +1,9 @@
 #!/bin/ bash
 
-#script uses samtools to get for every bam file an bai file, important for further work
 
-for INFILE in "$@"
+# Loop through all BAM files in the specified directory
+for INFILE in "$bam_file"/*.bam
 do
-	samtools index $INFILE
+    echo "Indexing: $INFILE"
+    samtools index "$INFILE"
 done
