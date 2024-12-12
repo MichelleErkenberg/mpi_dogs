@@ -55,14 +55,14 @@ with open(args.output_file, mode='w', newline='') as outfile:
         
         for position, expected_nucleotide in positions:
             try:
-                pileup_column = samfile.pileup(chromosome, position - 1, position)  # Adjust for 0-based indexing
+                pileup_column = samfile.pileup(chromosome, position, position +1)  # Adjust for 0-based indexing
                 
                 match_count = 0
                 total_count = 0
                 nucleotides_at_position = {}
 
                 for pileup in pileup_column:
-                    if pileup.pos == position - 1:  # Check if we're at the correct position
+                    if pileup.pos == position:  # Check if we're at the correct position
                         for pileup_read in pileup.pileups:
                             if not pileup_read.is_del and not pileup_read.is_refskip:
                                 query_pos = pileup_read.query_position
