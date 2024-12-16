@@ -8,11 +8,13 @@ import re
 # Function to sort sample names numerically
 def sort_sample_names(name):
     match = re.search(r'sample_(\d+)', name)
-    return int(match.group(1)) if match else 0
+    if match:
+        return int(match.group(1))
+    return 0
 
 # Function to process pileup
 def process_pileup(pileup, pos, match_count, total_count, nucleotides_at_position, expected_nucleotide):
-    debug_info = []
+    debug_info = []  # Initialize debug info here
     for pileup_read in pileup.pileups:
         if not pileup_read.is_del and not pileup_read.is_refskip:
             query_pos = pileup_read.query_position
@@ -22,7 +24,11 @@ def process_pileup(pileup, pos, match_count, total_count, nucleotides_at_positio
                 total_count += 1
                 if nucleotide == expected_nucleotide:
                     match_count += 1
-                debug_info.append(f"Read:{pileup_read.alignment.query_name}, Base:{nucleotide}, Pos:{pos}")
+                
+                # Only collect debug info if we're at the correct position
+                if pileup.pos == pos - 1:  # Adjust for 0-based indexing
+                    debug_info.append(f"Read:{pileup_read.alignment.query_name}, Base:{nucleotide}, Pos:{pos}")
+
     return match_count, total_count, nucleotides_at_position, debug_info
 
 # Step 1: Set up argument parsing
@@ -51,7 +57,7 @@ with open(args.reference_csv, mode='r') as ref_file:
     ref_reader = csv.DictReader(ref_file)
     for row in ref_reader:
         position = int(row['Position'])
-        reference_base = row['Reference (NC_002008.4)'].upper()
+        reference_base = row['Reference (NC_002008.4)'].upper()  # This uses the 'Reference (NC_002008.4)' column
         reference_bases[position] = reference_base
 
 # Step 4: Get all BAM files in the specified directory and sort them
@@ -61,12 +67,12 @@ bam_files.sort(key=lambda x: sort_sample_names(os.path.basename(x)))
 # Step 5: Process each BAM file and write results to the output CSV
 with open(args.output_file, mode='w', newline='') as outfile:
     fieldnames = ['Sample', 'Chromosome', 'Position', 'Matches', 'Total Reads', 'Expected Nucleotide',
-                  'Nucleotides Found', 'Reference Base', 'Previous Base', 'Next Base', 'Debug Info']
+                  'Nucleotides Found', 'Reference Base', 'Debug Info']
     writer = csv.DictWriter(outfile, fieldnames=fieldnames)
     writer.writeheader()
 
     for bam_file in bam_files:
-        sample_name = os.path.basename(bam_file).split('.')[0]
+        sample_name = os.path.basename(bam_file).split('.')[0]  # Extract sample name from BAM filename
         print(f"Processing {sample_name}...")
 
         samfile = pysam.AlignmentFile(bam_file, "rb")
@@ -75,20 +81,20 @@ with open(args.output_file, mode='w', newline='') as outfile:
         chromosome = args.chromosome if args.chromosome else next(iter(samfile.references))
         
         for position, expected_nucleotide in positions:
-            reference_base = reference_bases.get(position, 'N/A')
-            previous_base = reference_bases.get(position - 1, 'N/A')
-            next_base = reference_bases.get(position + 1, 'N/A')
+            reference_base = reference_bases.get(position, 'N/A')  # Default value for not found positions
             
             try:
-                pileup_column = samfile.pileup(chromosome, position - 1, position)  # Only the target position
+                # Perform pileup query only for the target position
+                pileup_column = samfile.pileup(chromosome, position - 1, position)
 
                 match_count = 0
                 total_count = 0
                 nucleotides_at_position = {}
                 debug_info = []
 
+                # Process pileup for the target position only
                 for pileup in pileup_column:
-                    if pileup.pos == position - 1:  # Only the target position (0-based)
+                    if pileup.pos == position - 1:  # 0-based to 1-based conversion
                         match_count, total_count, nucleotides_at_position, debug_info = process_pileup(
                             pileup, position, match_count, total_count,
                             nucleotides_at_position, expected_nucleotide)
@@ -102,11 +108,10 @@ with open(args.output_file, mode='w', newline='') as outfile:
                     'Expected Nucleotide': expected_nucleotide,
                     'Nucleotides Found': ', '.join([f"{nuc}:{count}" for nuc,count in nucleotides_at_position.items()]),
                     'Reference Base': reference_base,
-                    'Previous Base': previous_base,
-                    'Next Base': next_base,
                     'Debug Info': '; '.join(debug_info)
                 })
             except ValueError as e:
+                # Handle cases where the chromosome or position is not found in the BAM file
                 writer.writerow({
                     'Sample': sample_name,
                     'Chromosome': chromosome,
@@ -116,8 +121,6 @@ with open(args.output_file, mode='w', newline='') as outfile:
                     'Expected Nucleotide': expected_nucleotide,
                     'Nucleotides Found': 'Position not found',
                     'Reference Base': reference_base,
-                    'Previous Base': previous_base,
-                    'Next Base': next_base,
                     'Debug Info': str(e)
                 })
 
