@@ -8,9 +8,7 @@ import re
 # Function to sort sample names numerically
 def sort_sample_names(name):
     match = re.search(r'sample_(\d+)', name)
-    if match:
-        return int(match.group(1))
-    return 0
+    return int(match.group(1)) if match else 0
 
 # Function to process pileup
 def process_pileup(pileup, pos, match_count, total_count, nucleotides_at_position, expected_nucleotide):
@@ -84,7 +82,7 @@ with open(args.output_file, mode='w', newline='') as outfile:
             reference_base = reference_bases.get(position, 'N/A')  # Default value for not found positions
             
             try:
-                # Perform pileup query only for the target position
+                # Perform pileup query only for the target position (0-based index)
                 pileup_column = samfile.pileup(chromosome, position - 1, position)
 
                 match_count = 0
@@ -94,10 +92,12 @@ with open(args.output_file, mode='w', newline='') as outfile:
 
                 # Process pileup for the target position only
                 for pileup in pileup_column:
-                    if pileup.pos == position - 1:  # 0-based to 1-based conversion
-                        match_count, total_count, nucleotides_at_position, debug_info = process_pileup(
+                    if pileup.pos == position - 1:  # Ensure we are checking the correct position (0-based)
+                        match_count, total_count, nucleotides_at_position, debug_info_temp = process_pileup(
                             pileup, position, match_count, total_count,
                             nucleotides_at_position, expected_nucleotide)
+
+                        debug_info.extend(debug_info_temp)
 
                 writer.writerow({
                     'Sample': sample_name,
