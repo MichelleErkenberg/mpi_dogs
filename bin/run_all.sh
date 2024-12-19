@@ -1,8 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-#export BASE_PATH="/home/michelle/github/mpi_dogs" 
+#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+export BASE_PATH="/home/michelle/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -47,4 +47,4 @@ bash ref/run_extract_dog.sh
 #python3 env_bam/bam_finder_old.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae/sample_10.Canidae.Canis_lupus_famili"$BASE_PATH/data/dog_samples/env_bam/env_bam" "Heidi"
 #python3 env_bam/bam_finder_new.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae" "$BASE_PATH/data/dog_samples/env_bam/all_env_Heidi.csv" "Heidi"
 
-bash env_bam/run_bam.sh
+#bash env_bam/run_bam.sh
