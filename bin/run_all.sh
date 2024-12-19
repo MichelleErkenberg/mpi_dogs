@@ -37,10 +37,10 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 
 #using the ref dog genome for genome coordinates 
 #mkdir -p "$BASE_PATH/data/dog_samples/ref"
-#python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
+python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
 
 #dogs were living in different offices, this script creates files with just the dogs that lived together 
-#bash ref/run_extract_dog.sh 
+bash ref/run_extract_dog.sh 
 
 #finding the private position for our dogs in the environment data
 #old version
