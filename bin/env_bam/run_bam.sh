@@ -17,6 +17,7 @@ python3 env_bam/bam_finder_new.py "$office_file/office_1/5dogs.Heidi.csv" "$offi
 python3 env_bam/bam_finder_new.py "$office_file/office_1/5dogs.Fritzy.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Fritzy.csv" "Fritzy"
 python3 env_bam/bam_finder_new.py "$office_file/office_1/5dogs.Vito.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Vito.csv" "Vito"
 python3 env_bam/bam_finder_new.py "$office_file/office_1/5dogs.Urza.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Urza.csv" "Urza"
+python3 env_bam/bam_finder_new.py "$office_file/office_1/5dogs.Cami.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Cami.csv" "Cami"
 
 python3 env_bam/bam_finder_new.py "$office_file/office_2/3dogs.Lily.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Lily.csv" "Lily"
 python3 env_bam/bam_finder_new.py "$office_file/office_2/3dogs.ThorA.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_ThorA.csv" "ThorA"
