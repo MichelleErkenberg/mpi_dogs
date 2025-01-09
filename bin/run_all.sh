@@ -1,8 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-#export BASE_PATH="/home/michelle/github/mpi_dogs" 
+#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+export BASE_PATH="/home/michelle/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -43,8 +43,11 @@ export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs"
 #bash ref/run_extract_dog.sh 
 
 #finding the private position for our dogs in the environment data
-#old version
-#python3 env_bam/bam_finder_old.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae/sample_10.Canidae.Canis_lupus_famili"$BASE_PATH/data/dog_samples/env_bam/env_bam" "Heidi"
-#python3 env_bam/bam_finder_new.py "$BASE_PATH/data/dog_samples/ref/office_1/5dogs.Heidi.csv" "$BASE_PATH/data/env_samples/Canidae" "$BASE_PATH/data/dog_samples/env_bam/all_env_Heidi.csv" "Heidi"
 
-bash env_bam/run_bam.sh
+#bash env_bam/run_bam.sh
+
+#prepairing the environmental dog data to process them using R 
+#creates a csv file with the average radio for each dog in the sample
+python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/R_prep.csv"
+#uses the txt file with the location to sort those average radios into new csv files
+python3 R_prep/env_place.py "$BASE_PATH/data/dog_samples/R_prep/R_prep.csv" "$BASE_PATH/R/dog_env_samples_24_v1.txt" "$BASE_PATH/R/"

@@ -6,6 +6,8 @@ library(ggplot2)
 # else
 #   setwd('/Volumes/scratch/praktikum2024_mol_anth/')
 
+setwd('/github/mpi_dogs/R/')
+
 
 ## Read in the sample sheet
 dt.samples <- fread('data/dog_env_samples_24_v1.txt', na.strings = c('-','NA',''))
