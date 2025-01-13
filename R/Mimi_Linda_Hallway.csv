@@ -1,5 +1,5 @@
-Sample,office,x,y,Vito,Lily,Urza,Heidi,Fritzy,ThorA,Cami
-sample_46,Mimi/Linda Hallway,2,,,,,0.0,0.0,1.0,0.0
-sample_47,Mimi/Linda Hallway,3,,0.0,0.75,0.0,0.0,0.0,0.7888888888888889,0.02539461060587821
-sample_48,Mimi/Linda Hallway,4,,,,,,,,0.0
-sample_49,Mimi/Linda Hallway,5,,0.0,0.0,0.0,0.0,0.0,0.625,0.029931972789115642
+Sample,office,x,y,Cami,Heidi,Urza,Lily,Fritzy,ThorA,Vito
+sample_46,Mimi/Linda Hallway,2,,0.0,0.0,,,0.0,1.0,
+sample_47,Mimi/Linda Hallway,3,,0.02539461060587821,0.0,0.0,0.75,0.0,0.7888888888888889,0.0
+sample_48,Mimi/Linda Hallway,4,,0.0,,,,,,
+sample_49,Mimi/Linda Hallway,5,,0.029931972789115642,0.0,0.0,0.0,0.0,0.625,0.0
