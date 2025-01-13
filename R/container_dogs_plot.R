@@ -73,3 +73,36 @@ print(heatmap_fritzy)
 print(heatmap_urza)
 grid.arrange(heatmap_fritzy, heatmap_heidi, heatmap_urza, heatmap_vito, ncol = 2)
 
+
+# creating plots for Cami as our ref dog (in Container and Mimi/Linda office)
+heatmap_cami_c <- ggplot(data, aes(x = x, y = y, fill = Cami)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
+  scale_x_continuous(breaks = unique(data$X)) +
+  scale_y_continuous(breaks = unique(data$Y)) +
+  coord_fixed() +
+  labs(title = "Heatmap for Cami (Container)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_blank(),  
+    panel.grid = element_blank(),
+    axis.text = element_blank()    
+  )
+
+data_lily <- read.csv("Mimi_Linda.csv")
+
+heatmap_cami_l <- ggplot(data_lily, aes(x = x, y = y, fill = Cami)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
+  scale_x_continuous(breaks = unique(data$X)) +
+  scale_y_continuous(breaks = unique(data$Y)) +
+  coord_fixed() +
+  labs(title = "Heatmap for Cami (Mimi/Linda)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_blank(),  
+    panel.grid = element_blank(),
+    axis.text = element_blank()    
+  )
+
+grid.arrange(heatmap_cami_c, heatmap_cami_l, ncol = 2)
