@@ -1,6 +1,6 @@
 #ignore env_samples but not the quicksand file
-data/env_samples/
 !data/env_samples/quicksand.v2/final_report.tsv
+data/env_samples/
 
 !data/dog_samples/Consensus/*.fasta
 
