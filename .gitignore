@@ -1,7 +1,7 @@
 #ignore env_samples but not the quicksand file
 data/env_samples/Canidae
 data/env_samples/consensus
-data/env_samples/quicksand.v2
+!data/env_samples/quicksand.v2
 <<<<<<< HEAD
 =======
 data/env_samples/Consensus
