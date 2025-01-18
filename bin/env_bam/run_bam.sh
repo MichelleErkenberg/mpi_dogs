@@ -26,4 +26,4 @@ python3 env_bam/bam_finder_new.py "$office_file/office_thorA.lily/3dogs.ThorA.cs
 python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Anda.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Anda.csv" "Anda"
 python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Charlie.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Charlie.csv" "Charlie"
 
-python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Anda_vito.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Anda_Vito.csv" "Anda"
+python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Anda_Vito.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Anda_Vito.csv" "Anda"
