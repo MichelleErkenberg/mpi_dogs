@@ -20,11 +20,11 @@ def process_csv(input_pattern, output_file):
         # Read the CSV file
         df = pd.read_csv(file)
         
-        # Group the data by Sample
-        grouped = df.groupby('Sample')
+        # Group the data by Sample and sum Matches and Total Reads
+        grouped = df.groupby('Sample').agg({'Matches': 'sum', 'Total Reads': 'sum'})
         
-        # Calculate the ratio
-        results = grouped.apply(lambda x: (x['Matches'] / x['Total Reads']).mean(), include_groups=False)
+        # Calculate the ratio of sums
+        results = grouped['Matches'] / grouped['Total Reads']
         
         # Create a DataFrame with the results
         results_df = pd.DataFrame({env_name: results})

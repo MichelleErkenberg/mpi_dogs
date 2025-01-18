@@ -35,8 +35,7 @@ bash "$extract_script" "$FILE" "$OUTDIR/office_thorA.lily/Anda/3dogs_Anda.as.Tho
 
 bash "$extract_script" "$FILE" "$OUTDIR/office_anda.charlie/3dogs_Anda_Charlie_Cami.csv" "Anda" "Charlie" "Cami" 
 
-
-
+bash "$extract_script" "$FILE" "$OUTDIR/office_anda.charlie/3dogs_Anda_Charlie_Cami_Vito.csv" "Anda" "Charlie" "Vito" "Cami"
 echo "All extractions completed."
 
 
@@ -81,3 +80,5 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_thorA.lily/Anda/3dog
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_anda.charlie/3dogs_Anda_Charlie_Cami.csv" "$OUTDIR/office_anda.charlie/3dogs.Anda.csv" "Anda"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_anda.charlie/3dogs_Anda_Charlie_Cami.csv" "$OUTDIR/office_anda.charlie/3dogs.Charlie.csv" "Charlie"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_anda.charlie/3dogs_Anda_Charlie_Cami.csv" "$OUTDIR/office_anda.charlie/3dogs.Cami.csv" "Cami"
+
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_anda.charlie/3dogs_Anda_Charlie_Cami_Vito.csv" "$OUTDIR/office_anda.charlie/3dogs.Anda_Vito.csv" "Anda"
