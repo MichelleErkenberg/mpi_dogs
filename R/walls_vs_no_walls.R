@@ -11,26 +11,26 @@ dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.s
 ## Read in the tsv file with the quicksand data for all samples
 dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c('-','NA',''))
 
-## Apply the cap to ReadsDeduped and add a small constant
+## Apply the cap to ReadsDeduped and add a small constant to avoid log scale errors
 dt.tax[, ReadsDeduped.cap := pmin(ReadsDeduped, 20000) + 1]
+
 
 ## Merge dt.tax with dt.dog_office to include category information
 dt.tax_filtered <- merge(dt.tax, dt.dog_office[, .(sample_id, category, category2)], by="sample_id", all.x=TRUE)
 
-## Filter for only Human (Hominidae) and Dog (Canidae) families
+## Filter for only Hominidae and Canidae families
 relevant_families <- c('Hominidae', 'Canidae')
 dt.tax_filtered <- dt.tax_filtered[Family %in% relevant_families]
 
-## Add wall information and rename families, treating empty categories as "No Wall"
+## Add wall information, treating empty categories as "No Wall"
 dt.tax_filtered[, `:=`(
-  is_wall = ifelse(category == "wall", "Wall", "No Wall"),
-  Species = ifelse(Family == "Hominidae", "Human", "Dog")
+  is_wall = ifelse(category == "wall", "Wall", "No Wall")
 )]
 dt.tax_filtered[is.na(is_wall) | is_wall == "", is_wall := "No Wall"]
 
 ## Function to create boxplot without jitter (log scale)
 create_boxplot <- function(data, title) {
-  ggplot(data, aes(x = is_wall, y = ReadsDeduped.cap, fill = Species)) +
+  ggplot(data, aes(x = is_wall, y = ReadsDeduped.cap, fill = Family)) +
     geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7) +
     stat_summary(fun = median, geom = "point", shape = 18, size = 3, color = "black", position = position_dodge(width = 0.8)) +
     scale_y_log10(labels = scales::comma) +
@@ -41,9 +41,9 @@ create_boxplot <- function(data, title) {
 
 ## Function to create boxplot with jitter (log scale)
 create_boxplot_with_jitter <- function(data, title) {
-  ggplot(data, aes(x = is_wall, y = ReadsDeduped.cap, fill = Species)) +
+  ggplot(data, aes(x = is_wall, y = ReadsDeduped.cap, fill = Family)) +
     geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7, outlier.shape = NA) +
-    geom_jitter(aes(color = Species), position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha = 0.5) +
+    geom_jitter(aes(color = Family), position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha = 0.5) +
     stat_summary(fun = median, geom = "point", shape = 18, size = 3, color = "black", position = position_dodge(width = 0.8)) +
     scale_y_log10(labels = scales::comma) +
     theme_minimal() +
