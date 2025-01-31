@@ -14,24 +14,26 @@ dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c
 ## Filter and prepare the data
 dt.tax_filtered <- merge(dt.tax, dt.dog_office[, .(sample_id, category, category2, office)], by="sample_id", all.x=TRUE)
 dt.tax_filtered <- dt.tax_filtered[Family %in% c('Hominidae', 'Canidae')]
-dt.tax_filtered[, ReadsDeduped.cap := pmin(ReadsDeduped, 20000) + 1]
+#dt.tax_filtered[, ReadsDeduped.cap := pmin(ReadsDeduped, 20000) + 1]
+
+
+## Define family order and custom colors
+custom_colors <- c("Hominidae" = "#fed976", "Canidae" = "#35978f")
 
 ## Extract unique categories
 unique_categories <- unique(dt.dog_office$category2)
-
-## Create initial mapping
-category_mapping <- setNames(
-  gsub("_", " ", tools::toTitleCase(unique_categories)),
-  unique_categories
-)
-
-## Print initial mapping
-print("Initial category mapping:")
-print(category_mapping)
+print(unique_categories)
 
 ## Manual adjustments
-category_mapping["nc"] <- "Negative Control"
-category_mapping["nc_office"] <- "No Dog Office"
+category_mapping <- c(
+  "dog_office" = "Dog Office",
+  "main-entrance" = "Main Entrance",
+  "elevator" = "Elevator",
+  "hallway" = "Hallway",
+  "nc_office" = "No Dog Office",
+  "nc" = "Negative Control",
+  "lab" = "Lab"
+)
 
 ## Apply the mapping to create the Category column
 dt.tax_filtered[, Category := factor(category2, levels = names(category_mapping), labels = category_mapping)]
@@ -41,27 +43,40 @@ dt.tax_filtered[, CategoryLabel := ifelse(category2 == "lab",
                                           paste0(Category, " (", office, ")"), 
                                           as.character(Category))]
 
-## Create a custom order for the categories
+# unique lab categories 
+lab_categories <- sort(unique(dt.tax_filtered[category2 == "lab", CategoryLabel]))
+
+# define order
 custom_order <- c(
-  setdiff(unique(dt.tax_filtered$CategoryLabel), dt.tax_filtered[category2 == "lab", unique(CategoryLabel)]),
-  dt.tax_filtered[category2 == "lab", sort(unique(CategoryLabel))]
+  "Negative Control",
+  lab_categories[1],  # "Lab (Cleanroom)"
+  lab_categories[2],  # "Lab (PCR Lab)"
+  "No Dog Office",
+  "Hallway", 
+  "Elevator",
+  "Main Entrance",
+  "Dog Office"
 )
 
 ## Ensure the order of categories is preserved with the custom order
-dt.tax_filtered[, CategoryLabel := factor(CategoryLabel, levels = custom_order)]
+dt.tax_filtered[, ReadsDeduped := ReadsDeduped + 1]
+
 
 ## Create the plot
-ggplot(dt.tax_filtered, aes(x = ReadsDeduped.cap, y = CategoryLabel, fill = Family)) +
+ggplot(dt.tax_filtered, aes(x = ReadsDeduped, y = factor(CategoryLabel, levels = custom_order), fill = Family)) +
   geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7) +
+  coord_cartesian(xlim = c(1, max(dt.tax_filtered$ReadsDeduped, na.rm = TRUE))) +
   scale_x_log10(labels = scales::comma) +
   theme_minimal() +
-  labs(title = "Distribution of Reads by Category and Family",
+  labs(title = "Distribution of Reads by Location and Family",
        x = "mtDNA (log10 scale)",
-       y = "Category") +
-  theme(legend.position = "bottom",
-        axis.text.y = element_text(angle = 0, hjust = 1),
-        panel.grid.major.y = element_line(color = "gray90"),
-        panel.grid.minor.y = element_blank()) 
+       y = "Location",
+       fill = "Family") +  
+  theme(
+    legend.position = "bottom",  
+    legend.box.just = "center",  
+    legend.margin = margin(t = 0, r = 0, b = 0, l = 0)) +
+  scale_fill_manual(values = custom_colors)
 
 ## Save the plot
 ggsave("figures/category_family_distribution.png", width = 12, height = 10)
