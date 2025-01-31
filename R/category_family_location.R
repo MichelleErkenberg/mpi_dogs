@@ -11,11 +11,19 @@ dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.s
 ## Read in the tsv file with the quicksand data for all samples
 dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c('-','NA',''))
 
+# Define threshold
+threshold_reads <- 1000 
+
 ## Filter and prepare the data
 dt.tax_filtered <- merge(dt.tax, dt.dog_office[, .(sample_id, category, category2, office)], by="sample_id", all.x=TRUE)
+dt.tax_filtered <- dt.tax_filtered[ReadsRaw >= threshold_reads]
 dt.tax_filtered <- dt.tax_filtered[Family %in% c('Hominidae', 'Canidae')]
-#dt.tax_filtered[, ReadsDeduped.cap := pmin(ReadsDeduped, 20000) + 1]
 
+# Print information about removed samples
+total_samples <- nrow(dt.tax)
+filtered_samples <- nrow(dt.tax_filtered)
+removed_samples <- total_samples - filtered_samples
+print(paste("Removed", removed_samples, "samples below the threshold of", threshold_reads, "reads."))
 
 ## Define family order and custom colors
 custom_colors <- c("Hominidae" = "#fed976", "Canidae" = "#35978f")
@@ -61,7 +69,6 @@ custom_order <- c(
 ## Ensure the order of categories is preserved with the custom order
 dt.tax_filtered[, ReadsDeduped := ReadsDeduped + 1]
 
-
 ## Create the plot
 ggplot(dt.tax_filtered, aes(x = ReadsDeduped, y = factor(CategoryLabel, levels = custom_order), fill = Family)) +
   geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7) +
@@ -80,4 +87,3 @@ ggplot(dt.tax_filtered, aes(x = ReadsDeduped, y = factor(CategoryLabel, levels =
 
 ## Save the plot
 ggsave("figures/category_family_distribution.png", width = 12, height = 10)
-
