@@ -40,7 +40,7 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
 
 #dogs were living in different offices, this script creates files with just the dogs that lived together 
-#bash ref/run_extract_dog.sh 
+bash ref/run_extract_dog.sh 
 
 #finding the private position for our dogs in the environment data
 
@@ -48,6 +48,6 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 
 #prepairing the environmental dog data to process them using R 
 #creates a csv file with the average radio for each dog in the sample
-python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv"
+#python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv"
 #uses the txt file with the location to sort those average radios into new csv files
 #python3 R_prep/env_place.py "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv" "$BASE_PATH/data/dog_samples/R_prep/dog_env_samples_24_v1.txt" "$BASE_PATH/data/dog_samples/R_prep/"
