@@ -27,3 +27,14 @@ python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Anda.c
 python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Charlie.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Charlie.csv" "Charlie"
 
 python3 env_bam/bam_finder_new.py "$office_file/office_anda.charlie/3dogs.Anda_Vito.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_Anda_Vito.csv" "Anda"
+
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Anda.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Anda.csv" "Anda"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Cami.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Cami.csv" "Cami"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Charlie.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Charlie.csv" "Charlie"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Fritzy.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Fritzy.csv" "Fritzy"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Heidi.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Heidi.csv" "Heidi"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Lily.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Lily.csv" "Lily"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Urza.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Urza.csv" "Urza"
+python3 env_bam/bam_finder_new.py "$office_file/all_dogs/all_dogs_AC.Vito.csv" "$office_file/ref_coordinates.csv" "$bam_file" "$env_bam/all_env_AC.Vito.csv" "Vito"
+
+
