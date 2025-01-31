@@ -1,3 +1,4 @@
+
 library(data.table)
 library(ggplot2)
 library(gridExtra)
@@ -11,13 +12,24 @@ dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.s
 ## Read in the tsv file with the quicksand data for all samples
 dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c('-','NA',''))
 
+# Define thresholds
+threshold_readsraw <- 1000  
+threshold_readsdeduped <- 100
+
+# Filter based on ReadsRaw threshold
+dt.tax_filtered_raw <- dt.tax[ReadsRaw >= threshold_readsraw]
+
+# Print information about removed samples based on ReadsRaw
+removed_samples_raw <- nrow(dt.tax) - nrow(dt.tax_filtered_raw)
+print(paste("Removed", removed_samples_raw, "samples below the threshold of", threshold_readsraw, "raw reads."))
+
 ## Split dog_office data
 dog_office_samples <- dt.dog_office[category2 == "dog_office", sample_id]
 non_dog_office_samples <- dt.dog_office[category2 != "dog_office", sample_id]
 
 ## Filter tax data for dog_office and non_dog_office samples
-dt.tax_dog_office <- dt.tax[sample_id %in% dog_office_samples]
-dt.tax_non_dog_office <- dt.tax[sample_id %in% non_dog_office_samples]
+dt.tax_dog_office <- dt.tax_filtered_raw[sample_id %in% dog_office_samples]
+dt.tax_non_dog_office <- dt.tax_filtered_raw[sample_id %in% non_dog_office_samples]
 
 ## Define family order and custom colors
 family_order <- c('Hominidae', 'Canidae', 'Felidae', 'Suidae')
@@ -25,8 +37,8 @@ custom_colors <- c("Hominidae" = "#fed976", "Canidae" = "#35978f",
                    "Felidae" = "#9970ab", "Suidae" = "#4575b4")
 
 ## Function to process data for bar plots and pie charts
-process_data <- function(dt, relevant_families, threshold) {
-  dt <- dt[Family %in% relevant_families & ReadsDeduped >= threshold]
+process_data <- function(dt, relevant_families, threshold_deduped) {
+  dt <- dt[Family %in% relevant_families & ReadsDeduped >= threshold_deduped]
   list(
     bar_data = dt[, .(count = uniqueN(sample_id)), by = Family],
     pie_data = dt[, .(ReadsDeduped = sum(ReadsDeduped)), by = Family]
@@ -35,11 +47,10 @@ process_data <- function(dt, relevant_families, threshold) {
 
 ## Set parameters
 relevant_families <- c('Hominidae', 'Canidae', 'Felidae', 'Suidae')
-threshold <- 100
 
 ## Process data
-results_dog_office <- process_data(dt.tax_dog_office, relevant_families, threshold)
-results_non_dog_office <- process_data(dt.tax_non_dog_office, relevant_families, threshold)
+results_dog_office <- process_data(dt.tax_dog_office, relevant_families, threshold_readsdeduped)
+results_non_dog_office <- process_data(dt.tax_non_dog_office, relevant_families, threshold_readsdeduped)
 
 ## Create bar plot function
 create_plot <- function(data, title) {
