@@ -12,7 +12,7 @@ dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.s
 dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c('-','NA',''))
 
 # Define threshold
-threshold_reads <- 10000 
+threshold_reads <- 15000 
 
 ## Filter and prepare the data
 dt.tax_filtered <- merge(dt.tax, dt.dog_office[, .(sample_id, category, category2, office)], by="sample_id", all.x=TRUE)
