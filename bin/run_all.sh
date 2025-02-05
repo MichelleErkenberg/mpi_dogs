@@ -1,8 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-export BASE_PATH="/home/michelle/github/mpi_dogs" 
+export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+#export BASE_PATH="/home/michelle/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -40,18 +40,23 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
 
 #dogs were living in different offices, this script creates files with just the dogs that lived together 
-#bash ref/run_extract_dog.sh 
+bash ref/run_extract_dog.sh 
 
 #finding the private position for our dogs in the environment data
 
-#bash env_bam/run_bam.sh
+bash env_bam/run_bam.sh
 
 #prepairing the environmental dog data to process them using R 
 #creates a csv file with the average radio for each dog in the sample
 #python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv" "2"
+
 #creates csv file with average radio for each dog by using all dog (except Thor A and B)
 mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs_AC"
 python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_AC/R_prep_sample_vs_dog_AC.csv" "2"
+
+#creates csv file with average radio for each dog by using all dog (except Thor A and B and Lily)
+mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL"
+python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_dogs_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL.csv" "2"
 
 #uses the txt file with the location to sort those average radios into new csv files
 #python3 R_prep/env_place.py "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv" "$BASE_PATH/data/dog_samples/R_prep/dog_env_samples_24_v1.txt" "$BASE_PATH/data/dog_samples/R_prep/"

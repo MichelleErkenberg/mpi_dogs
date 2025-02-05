@@ -13,8 +13,8 @@ dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.s
 dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c('-','NA',''))
 
 # Define thresholds
-threshold_readsraw <- 1000  
-threshold_readsdeduped <- 100
+threshold_readsraw <- 15000  
+threshold_readsdeduped <- 50
 
 # Filter based on ReadsRaw threshold
 dt.tax_filtered_raw <- dt.tax[ReadsRaw >= threshold_readsraw]

@@ -41,7 +41,9 @@ echo "All extractions completed."
 #extracting all dogs (always decide between closely related once)
 mkdir -p "$OUTDIR/all_dogs"
 bash "$extract_script" "$FILE" "$OUTDIR/all_dogs/all_dogs_with_Anda_Cami.csv" "Anda" "Cami" "Fritzy" "Heidi" "Urza" "Vito" "Lily" "Charlie" 
-#bash "$extract_script" "$FILE" "$OUTDIR/all_dogs/all_dogs_with_ThorA_B.csv" "ThorA" "ThorB" "Fritzy" "Heidi" "Urza" "Vito" "Lily" "Charlie" 
+
+mkdir -p "$OUTDIR/all_dogs_AC_without_Lily"
+bash "$extract_script" "$FILE" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "Anda" "Cami" "Fritzy" "Heidi" "Urza" "Vito" "Charlie" 
 echo "All extractions completed."
 
 #---------------second step --------------------------------
@@ -97,3 +99,10 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs/all_dogs_with_Anda
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs/all_dogs_with_Anda_Cami.csv" "$OUTDIR/all_dogs/all_dogs_AC.Lily.csv" "Lily"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs/all_dogs_with_Anda_Cami.csv" "$OUTDIR/all_dogs/all_dogs_AC.Charlie.csv" "Charlie"
 
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Anda.csv" "Anda"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Cami.csv" "Cami"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Heidi.csv" "Heidi"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Fritzy.csv" "Fritzy"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Vito.csv" "Vito"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Urza.csv" "Urza"
+python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_AC_without_Lily.csv" "$OUTDIR/all_dogs_AC_without_Lily/all_dogs_ACwoL.Charlie.csv" "Charlie"
