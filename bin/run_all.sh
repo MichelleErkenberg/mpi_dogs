@@ -1,8 +1,8 @@
 ##!/bin/bash
 
 #define base path, need to be change to your path
-#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-export BASE_PATH="/home/michelle/github/mpi_dogs" 
+export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
+#export BASE_PATH="/home/michelle/github/mpi_dogs" 
 
 #processing the data, filtering for ChrM and Quality and counting
 
@@ -40,11 +40,10 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
 
 #dogs were living in different offices, this script creates files with just the dogs that lived together 
-bash ref/run_extract_dog.sh 
+#bash ref/run_extract_dog.sh 
 
 #finding the private position for our dogs in the environment data
-
-#bash env_bam/run_bam.sh
+bash env_bam/run_bam.sh
 
 #prepairing the environmental dog data to process them using R 
 #creates a csv file with the average radio for each dog in the sample
