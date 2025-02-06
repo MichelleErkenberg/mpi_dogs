@@ -90,7 +90,7 @@ ggplot(dt.tax_filtered, aes(x = ReadsDeduped, y = CategoryLabelWithCount, fill =
   geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7) +
   coord_cartesian(xlim = c(1, max(dt.tax_filtered$ReadsDeduped, na.rm = TRUE))) +
   scale_x_log10(labels = scales::comma) +
-  theme_minimal() +
+  theme_bw() +
   labs(title = "Distribution of Reads by Location and Family",
        x = "mtDNA (log10 scale)",
        y = "Location",
