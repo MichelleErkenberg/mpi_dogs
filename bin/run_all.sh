@@ -54,7 +54,9 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_AC/R_prep_sample_vs_dog_AC.csv" "2"
 #creates csv file with average radio for each dog by using all dog (except Thor A and B and Lily)
 mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL"
-python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL.csv" "2"
+python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_2snp.csv" "2"
+python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_5snp.csv" "5"
+python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_10snp.csv" "10"
 
 #uses the txt file with the location to sort those average radios into new csv files
 #python3 R_prep/env_place.py "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv" "$BASE_PATH/data/dog_samples/R_prep/dog_env_samples_24_v1.txt" "$BASE_PATH/data/dog_samples/R_prep/"

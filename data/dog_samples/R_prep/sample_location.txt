@@ -18,7 +18,7 @@ sample_16	Dog Office (Container)
 sample_17	Dog Office (Container)
 sample_18	Dog Office (Container)
 sample_19	Dog Office (Container)
-sample_20	Negativ control
+sample_20	Negativ Control
 sample_21	Dog Office (Container)
 sample_22	Dog Office (Container)
 sample_23	Dog Office (Container)
