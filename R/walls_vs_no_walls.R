@@ -1,6 +1,7 @@
 library(data.table)
 library(ggplot2)
 library(gridExtra)
+library(cowplot)
 
 ## Set working directory
 setwd("~/github/mpi_dogs/")
@@ -11,12 +12,8 @@ dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.s
 ## Read in the tsv file with the quicksand data for all samples
 dt.tax <- fread('data/env_samples/quicksand.v2/final_report.tsv', na.strings = c('-','NA',''))
 
-## Apply the cap to ReadsDeduped and add a small constant to avoid log scale errors
-dt.tax[, ReadsDeduped.cap := pmin(ReadsDeduped, 20000) + 1]
-
-
 ## Merge dt.tax with dt.dog_office to include category information
-dt.tax_filtered <- merge(dt.tax, dt.dog_office[, .(sample_id, category, category2)], by="sample_id", all.x=TRUE)
+dt.tax_filtered <- merge(dt.tax, dt.dog_office[, .(sample_id, category, category2, office)], by="sample_id", all.x=TRUE)
 
 ## Filter for only Hominidae and Canidae families
 relevant_families <- c('Hominidae', 'Canidae')
@@ -28,45 +25,74 @@ dt.tax_filtered[, `:=`(
 )]
 dt.tax_filtered[is.na(is_wall) | is_wall == "", is_wall := "No Wall"]
 
-## Function to create boxplot without jitter (log scale)
-create_boxplot <- function(data, title) {
-  ggplot(data, aes(x = is_wall, y = ReadsDeduped.cap, fill = Family)) +
-    geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7) +
-    stat_summary(fun = median, geom = "point", shape = 18, size = 3, color = "black", position = position_dodge(width = 0.8)) +
+## Define offices to exclude
+offices_to_exclude <- c("NC", "Mimi/Linda Hallway", "Tracy/Silke Hallway", "Main Entrance")
+
+## Filter out the excluded offices
+dt.tax_filtered <- dt.tax_filtered[!office %in% offices_to_exclude]
+
+## Define custom color scheme
+custom_colors <- c("Canidae" = "#35978f", "Hominidae" = "#fed976")
+
+## Function to create a single boxplot with custom colors
+create_single_boxplot <- function(data, title, x_label) {
+  ggplot(data, aes(x = is_wall, y = ReadsDeduped + 1, fill = Family)) +
+    geom_boxplot(width = 0.7, alpha = 0.7) +
+    stat_summary(fun = median, geom = "point", shape = 18, size = 3, color = "black") +
     scale_y_log10(labels = scales::comma) +
-    theme_minimal() +
-    labs(title = title, x = "Sample Location", y = "ReadsDeduped (capped, log10 scale)") +
-    theme(legend.position = "bottom")
+    scale_fill_manual(values = custom_colors) +
+    theme_bw() +
+    labs(title = title, x = x_label, y = "ReadsDeduped (log10 scale)")
 }
 
-## Function to create boxplot with jitter (log scale)
-create_boxplot_with_jitter <- function(data, title) {
-  ggplot(data, aes(x = is_wall, y = ReadsDeduped.cap, fill = Family)) +
-    geom_boxplot(position = position_dodge(width = 0.8), width = 0.7, alpha = 0.7, outlier.shape = NA) +
-    geom_jitter(aes(color = Family), position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha = 0.5) +
-    stat_summary(fun = median, geom = "point", shape = 18, size = 3, color = "black", position = position_dodge(width = 0.8)) +
-    scale_y_log10(labels = scales::comma) +
-    theme_minimal() +
-    labs(title = title, x = "Sample Location", y = "ReadsDeduped (capped, log10 scale)") +
-    theme(legend.position = "bottom")
-}
+## Creating the four separate plots
+plot_dog_office_canidae <- create_single_boxplot(
+  dt.tax_filtered[category2 == "dog_office" & Family == "Canidae"], 
+  "Dog Office: Canidae", 
+  "Sample Location"
+) + theme(legend.position = "none")
 
-## Create plots without jitter
-plot_dog_office <- create_boxplot(dt.tax_filtered[category2 == "dog_office"], "Dog Office: Wall vs No Wall")
-plot_non_dog_office <- create_boxplot(dt.tax_filtered[category2 != "dog_office"], "Non-Dog Office: Wall vs No Wall")
+plot_dog_office_hominidae <- create_single_boxplot(
+  dt.tax_filtered[category2 == "dog_office" & Family == "Hominidae"], 
+  "Dog Office: Hominidae", 
+  "Sample Location"
+) + theme(legend.position = "none")
 
-## Combine plots without jitter
-combined_plot_no_jitter <- grid.arrange(plot_dog_office, plot_non_dog_office, ncol = 2)
+plot_non_dog_office_canidae <- create_single_boxplot(
+  dt.tax_filtered[category2 != "dog_office" & Family == "Canidae"], 
+  "Non-Dog Location: Canidae", 
+  "Sample Location"
+) + theme(legend.position = "none")
 
-## Save combined plot without jitter
-ggsave("figures/walls_vs_no_walls.png", combined_plot_no_jitter, width = 16, height = 8)
+plot_non_dog_office_hominidae <- create_single_boxplot(
+  dt.tax_filtered[category2 != "dog_office" & Family == "Hominidae"], 
+  "Non-Dog Location: Hominidae", 
+  "Sample Location"
+) + theme(legend.position = "none")
 
-## Create plots with jitter
-plot_dog_office_jitter <- create_boxplot_with_jitter(dt.tax_filtered[category2 == "dog_office"], "Dog Office: Wall vs No Wall")
-plot_non_dog_office_jitter <- create_boxplot_with_jitter(dt.tax_filtered[category2 != "dog_office"], "Non-Dog Office: Wall vs No Wall")
+## Combine plots
+combined_plots <- plot_grid(
+  plot_dog_office_canidae,
+  plot_non_dog_office_canidae,
+  plot_dog_office_hominidae,
+  plot_non_dog_office_hominidae,
+  ncol = 2
+)
 
-## Combine plots with jitter
-combined_plot_with_jitter <- grid.arrange(plot_dog_office_jitter, plot_non_dog_office_jitter, ncol = 2)
+print(combined_plots)
 
-## Save combined plot with jitter
-ggsave("figures/walls_vs_no_walls_with_jitter.png", combined_plot_with_jitter, width = 16, height = 8)
+## Saving the combined plot
+ggsave("figures/walls_vs_no_walls.png", combined_plots, width = 16, height = 16)
+
+
+
+
+## T-Test
+# Data walls vs not wall
+wall_data <- dt.tax_filtered[is_wall == "Wall", ReadsDeduped]
+no_wall_data <- dt.tax_filtered[is_wall == "No Wall", ReadsDeduped]
+
+t_test_result <- t.test(wall_data, no_wall_data)
+
+print(t_test_result)
+
