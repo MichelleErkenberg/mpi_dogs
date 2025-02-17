@@ -6,6 +6,7 @@ setwd("~/github/mpi_dogs/")
 
 # Read the main CSV file with dog data
 dt.main <- fread('data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_10snp_renamed.csv', na.strings = c('-', 'NA', ''))
+# dt.main <- fread('data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_2snp_renamed.csv', na.strings = c('-', 'NA', ''))
 
 # Read the TXT file with location categories
 dt.categories <- fread('data/dog_samples/R_prep/sample_location.txt', na.strings = c('-', 'NA', ''))

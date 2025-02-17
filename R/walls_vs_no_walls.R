@@ -5,6 +5,8 @@ library(cowplot)
 
 ## Set working directory
 setwd("~/github/mpi_dogs/")
+# for ben
+# setwd("~/GoogleDrive/mpi_dogs/")
 
 ## Read in the txt file with dog office and category information
 dt.dog_office <- fread('data/dog_samples/R_prep/dog_env_samples_24_v1.txt', na.strings = c('-','NA',''))
@@ -20,16 +22,26 @@ relevant_families <- c('Hominidae', 'Canidae')
 dt.tax_filtered <- dt.tax_filtered[Family %in% relevant_families]
 
 ## Add wall information, treating empty categories as "No Wall"
-dt.tax_filtered[, `:=`(
-  is_wall = ifelse(category == "wall", "Wall", "No Wall")
-)]
+dt.tax_filtered[, is_wall := ifelse(category == "wall", "Wall", "No Wall")]
 dt.tax_filtered[is.na(is_wall) | is_wall == "", is_wall := "No Wall"]
 
+dt.tax_filtered[, .N, category]
+
 ## Define offices to exclude
+## also, the negative samples aren't all in NC?
+#     sample_number           sample_id              office office_number     x
+# 85:            85 negative_sample_gr1                <NA>          <NA>    NA
+# 86:            86 negative_sample_gr2                <NA>          <NA>    NA
+# 87:            87 negative_sample_gr3                <NA>          <NA>    NA
+# 88:            88 negative_sample_gr4                <NA>          <NA>    NA
 offices_to_exclude <- c("NC", "Mimi/Linda Hallway", "Tracy/Silke Hallway", "Main Entrance")
 
 ## Filter out the excluded offices
 dt.tax_filtered <- dt.tax_filtered[!office %in% offices_to_exclude]
+
+## List the included offices
+dt.tax_filtered[, .N, office]
+dt.tax_filtered[is.na(office)]
 
 ## Define custom color scheme
 custom_colors <- c("Canidae" = "#35978f", "Hominidae" = "#fed976")
@@ -43,6 +55,11 @@ create_single_boxplot <- function(data, title, x_label) {
     scale_fill_manual(values = custom_colors) +
     theme_bw() +
     labs(title = title, x = x_label, y = "ReadsDeduped (log10 scale)")
+  r.w <- data[is_wall == 'Wall', mean(ReadsDeduped)]
+  r.o <- data[is_wall == 'No Wall', mean(ReadsDeduped)]
+  cat('Avg  wall reads:', r.w, '\n')
+  cat('Avg !wall reads:', r.o, '\n')
+  cat('Ratio:', r.w/r.o, '\n')
 }
 
 ## Creating the four separate plots
@@ -96,3 +113,19 @@ t_test_result <- t.test(wall_data, no_wall_data)
 
 print(t_test_result)
 
+
+######
+## messing around with mixed effects models - have to talk to a real statistician!
+
+library(lme4)
+
+dt.tax_filtered[, office.n_obs := .N, office]
+dt.tax_filtered[office.n_obs > 4, .N, category2]
+
+mixed.lmer <- lmer(ReadsDeduped ~ is_wall + (1|office), 
+                   data = dt.tax_filtered)
+summary(mixed.lmer)
+
+mixed.lmer <- lmer(ReadsDeduped ~ is_wall + (1|category2) + Family, 
+                   data = dt.tax_filtered)
+summary(mixed.lmer)
