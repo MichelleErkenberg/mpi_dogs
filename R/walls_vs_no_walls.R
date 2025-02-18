@@ -48,18 +48,21 @@ custom_colors <- c("Canidae" = "#35978f", "Hominidae" = "#fed976")
 
 ## Function to create a single boxplot with custom colors
 create_single_boxplot <- function(data, title, x_label) {
-  ggplot(data, aes(x = is_wall, y = ReadsDeduped + 1, fill = Family)) +
+  p <- ggplot(data, aes(x = is_wall, y = ReadsDeduped + 1, fill = Family)) +
     geom_boxplot(width = 0.7, alpha = 0.7) +
     stat_summary(fun = median, geom = "point", shape = 18, size = 3, color = "black") +
     scale_y_log10(labels = scales::comma) +
     scale_fill_manual(values = custom_colors) +
     theme_bw() +
     labs(title = title, x = x_label, y = "ReadsDeduped (log10 scale)")
+  
   r.w <- data[is_wall == 'Wall', mean(ReadsDeduped)]
   r.o <- data[is_wall == 'No Wall', mean(ReadsDeduped)]
   cat('Avg  wall reads:', r.w, '\n')
   cat('Avg !wall reads:', r.o, '\n')
   cat('Ratio:', r.w/r.o, '\n')
+  
+  return(p)
 }
 
 ## Creating the four separate plots
@@ -113,6 +116,35 @@ t_test_result <- t.test(wall_data, no_wall_data)
 
 print(t_test_result)
 
+
+##Data walls vs not wall (dog + human and office specific)
+
+#dog office dogs
+canidae_dog_office_wall <- dt.tax_filtered[category2 == "dog_office" & Family == "Canidae" & is_wall == "Wall", ReadsDeduped]
+canidae_dog_office_no_wall <- dt.tax_filtered[category2 == "dog_office" & Family == "Canidae" & is_wall == "No Wall", ReadsDeduped]
+
+#dog office human
+hominidae_dog_office_wall <- dt.tax_filtered[category2 == "dog_office" & Family == "Hominidae" & is_wall == "Wall", ReadsDeduped]
+hominidae_dog_office_no_wall <- dt.tax_filtered[category2 == "dog_office" & Family == "Hominidae" & is_wall == "No Wall", ReadsDeduped]
+
+#not dog office dog
+canidae_non_dog_office_wall <- dt.tax_filtered[category2 != "dog_office" & Family == "Canidae" & is_wall == "Wall", ReadsDeduped]
+canidae_non_dog_office_no_wall <- dt.tax_filtered[category2 != "dog_office" & Family == "Canidae" & is_wall == "No Wall", ReadsDeduped]
+
+#not dog office human
+hominidae_non_dog_office_wall <- dt.tax_filtered[category2 != "dog_office" & Family == "Hominidae" & is_wall == "Wall", ReadsDeduped]
+hominidae_non_dog_office_no_wall <- dt.tax_filtered[category2 != "dog_office" & Family == "Hominidae" & is_wall == "No Wall", ReadsDeduped]
+
+#t-test for each groupe
+t_test_canidae_dog_office <- t.test(canidae_dog_office_wall, canidae_dog_office_no_wall)
+t_test_hominidae_dog_office <- t.test(hominidae_dog_office_wall, hominidae_dog_office_no_wall)
+t_test_canidae_non_dog_office <- t.test(canidae_non_dog_office_wall, canidae_non_dog_office_no_wall)
+t_test_hominidae_non_dog_office <- t.test(hominidae_non_dog_office_wall, hominidae_non_dog_office_no_wall)
+
+print(t_test_canidae_dog_office)
+print(t_test_hominidae_dog_office)
+print(t_test_canidae_non_dog_office)
+print(t_test_hominidae_non_dog_office)
 
 ######
 ## messing around with mixed effects models - have to talk to a real statistician!
