@@ -1,14 +1,14 @@
-install.packages(c("reshape2", "gridExtra"))
+#install.packages(c("reshape2", "gridExtra"))
 library(ggplot2)
 library(reshape2)
 library(gridExtra)
 
-setwd('/github/mpi_dogs/R/')
+setwd("~/github/mpi_dogs/")
 
-data <- read.csv("Container.csv")
+data <- read.csv("data/dog_samples/R_prep/all_dogs_AC/Container.csv")
 
 # Heatmap for each Container dog
-heatmap_heidi <- ggplot(data, aes(x = x, y = y, fill = Heidi)) +
+heatmap_heidi <- ggplot(data, aes(x = x, y = y, fill = AC.Heidi)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
   scale_x_continuous(breaks = unique(data$X)) +
@@ -23,7 +23,7 @@ heatmap_heidi <- ggplot(data, aes(x = x, y = y, fill = Heidi)) +
   )
 
 
-heatmap_vito <- ggplot(data, aes(x = x, y = y, fill = Vito)) +
+heatmap_vito <- ggplot(data, aes(x = x, y = y, fill = AC.Vito)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
   scale_x_continuous(breaks = unique(data$X)) +
@@ -37,7 +37,7 @@ heatmap_vito <- ggplot(data, aes(x = x, y = y, fill = Vito)) +
     axis.text = element_blank()    
   )
 
-heatmap_fritzy <- ggplot(data, aes(x = x, y = y, fill = Fritzy)) +
+heatmap_fritzy <- ggplot(data, aes(x = x, y = y, fill = AC.Fritzy)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
   scale_x_continuous(breaks = unique(data$X)) +
@@ -51,7 +51,7 @@ heatmap_fritzy <- ggplot(data, aes(x = x, y = y, fill = Fritzy)) +
     axis.text = element_blank()    
   )
 
-heatmap_urza <- ggplot(data, aes(x = x, y = y, fill = Urza)) +
+heatmap_urza <- ggplot(data, aes(x = x, y = y, fill = AC.Urza)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
   scale_x_continuous(breaks = unique(data$X)) +
@@ -75,7 +75,7 @@ grid.arrange(heatmap_fritzy, heatmap_heidi, heatmap_urza, heatmap_vito, ncol = 2
 
 
 # creating plots for Cami as our ref dog (in Container and Mimi/Linda office)
-heatmap_cami_c <- ggplot(data, aes(x = x, y = y, fill = Cami)) +
+heatmap_cami_c <- ggplot(data, aes(x = x, y = y, fill = AC.Cami)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
   scale_x_continuous(breaks = unique(data$X)) +
@@ -89,9 +89,11 @@ heatmap_cami_c <- ggplot(data, aes(x = x, y = y, fill = Cami)) +
     axis.text = element_blank()    
   )
 
-data_lily <- read.csv("Mimi_Linda.csv")
+print(heatmap_cami_c)
 
-heatmap_cami_l <- ggplot(data_lily, aes(x = x, y = y, fill = Cami)) +
+data_lily <- read.csv("data/dog_samples/R_prep/all_dogs_AC/Mimi_Linda.csv")
+
+heatmap_lily_l <- ggplot(data_lily, aes(x = x, y = y, fill = AC.Lily)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "blue", limits = c(0, 1)) +
   scale_x_continuous(breaks = unique(data$X)) +
@@ -104,5 +106,7 @@ heatmap_cami_l <- ggplot(data_lily, aes(x = x, y = y, fill = Cami)) +
     panel.grid = element_blank(),
     axis.text = element_blank()    
   )
+
+print(heatmap_lily_l)
 
 grid.arrange(heatmap_cami_c, heatmap_cami_l, ncol = 2)
