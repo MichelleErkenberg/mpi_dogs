@@ -6,14 +6,14 @@ REF_FILE="$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta"
 SCRIPT_PATH="$BASE_PATH/bin/consensus/consensus_from_bam.pl"
 
 # Create the 'consensus' directory if it doesn't exist
-mkdir -p ../data/dog_samples/consensus
+mkdir -p "$BASE_PATH/data/dog_samples/consensus"
 
 # Change to the 'consensus' directory
-cd ../data/dog_samples/consensus
+cd "$BASE_PATH/data/dog_samples/consensus"
 
 # Loop through all BAM files in the specified directory
 for bam_file in "$BAM_DIR"/*.bam; do
-    # Extract the base name of the file (without path and extension)
+    # Extract the base name of the file 
     base=$(basename "$bam_file" .bam)
     
     echo "Processing $base.bam..."

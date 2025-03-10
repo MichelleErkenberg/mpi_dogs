@@ -1,7 +1,7 @@
-#!/bin/bash
+##!/bin/bash
 
-# Change to the parent directory of dog_samples
-cd ../data
+
+cd "$BASE_PATH/data/dog_samples"
 
 # Define the base output directory
 base_dir="./dog_samples"

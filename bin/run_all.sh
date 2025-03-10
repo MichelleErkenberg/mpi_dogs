@@ -7,9 +7,7 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #processing the data, filtering for ChrM and Quality and counting
 
 	#filter for the mitochondrial Chromosom, mapquaility 25% and dedup
-#	bash processing/filter_ChrM.sh
-#	bash processing/filter_MQ25.sh
-#	bash processing/filter_dedup.sh
+#	bash processing/filter.sh
 	
 	#count the sequences and for orignial data count also for sequences per chromosom
 #	bash processing/count_sequences.sh

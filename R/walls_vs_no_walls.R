@@ -70,3 +70,4 @@ combined_plot_with_jitter <- grid.arrange(plot_dog_office_jitter, plot_non_dog_o
 
 ## Save combined plot with jitter
 ggsave("figures/walls_vs_no_walls_with_jitter.png", combined_plot_with_jitter, width = 16, height = 8)
+
