@@ -102,3 +102,27 @@ python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_*.csv" "
 * pysam
 * glob
 * os
+
+## R
+
+R was used for data visualization. For further data analysis, we decided to group genetically similar dogs together. This includes Anda, Thor A and Lily as well as Thor B and Cami.
+
+### Locations of the dogs
+
+Samples were collected from different locations. To highlight the amount of dog DNA at each location, the following R script can be used
+```
+R/dog_catagorized_readsdeduped.R
+```
+As the data contains samples with no data points or low amounts of DNA, these samples need to be sorted out. For SNP validation, the position of the SNPs must be covered by at least 10 sequences, regardless of whether the SNP occurs in them or not. There must also be at least 50 ReadsDeduped in the raw data. 
+After this filtering, different locations where the dogs might be present are examined. 
+
+Samples that are filtered out are highlighted with an asterisk. The data shows that each dog is mainly present in its owner's office. Based on this knowledge, further research was conducted.
+
+### Headmaps
+
+With the knowledge that every dog's DNA is most likely to occur in there owners office, we started to investigate the two main dog offices. Those include for office 1: Heidi, Vito, Fritzy and Urza, and for office 2: Lily and Thor A. As Lily and Thor A were grouped due to there genetic similarities in the first place, we used a different filtered dataset. The amount of DNA belonging to each individual dog was visualized as a heatmap.
+
+### Different species in dog and non-dog locations
+
+As the ground samples were taken from various locations, they might as well contain DNA from other species. Therefore, the presence of human, Felican and Suidae DNA was also checked.
+
