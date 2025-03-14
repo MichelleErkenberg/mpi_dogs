@@ -26,6 +26,9 @@ In a first step the data was processed. Therefore the raw data was filtered for 
 bash processing/filter.sh
 ```
 
+Also there are two scripts to count the sequences. One to count the amount of sequences in all chromosoms and one just for the amount of sequences that are mtDNA. This step is optional.
+
+
 ### 2. Consensus 
 
 Using the processed data to call a consensus sequence for each dog is done by using Matthias' perl script and a canines references FASTA.
@@ -35,7 +38,7 @@ bash consensus/consensus.sh
 
 ### 3. MSA
 
-In a first step to create a multiple sequence alignment (MSA), a masking step was performed. This resulted in a renamed copy of the consensus sequence for all dogs in a separate file. In addition, the undetermined data were deleted.
+In a first step to create a multiple sequence alignment (MSA), a masking step was performed. This resulted in a renamed copy of the consensus sequence for all dogs in a separate file. In addition, the undetermined data were deleted and the files are renamed to a shorter form.
 ```
 bash msa/mask.sh	
 ```
