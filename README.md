@@ -15,10 +15,12 @@ export BASE_PATH="/Path/to/your/file"
 ```
 
 
+
 ## Step-By-Step explanation of the script
 
 ### 1. Processing
 
+Here it is nessesary to change the *.bam file to your *.bam file directory.
 In a first step the data was processed. Therefore the raw data was filtered for the mitochondrial DNA (mtDNA). Furthermore a map quality of 25 % was required, and only deduplicated data was allowed.
 ```
 bash processing/filter.sh
@@ -85,3 +87,15 @@ In order to visualize the collected data in R, some processing was required. The
 ```
 python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv"
 ```
+
+## Python packages
+
+* pandas
+* csv
+* argparse
+* sys
+* re
+* ete3
+* pysam
+* glob
+* os
