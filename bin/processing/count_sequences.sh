@@ -1,15 +1,15 @@
 ##!/bin/bash
 
 
-cd "$BASE_PATH/data/dog_samples"
+cd "$BASE_PATH/data/dog_samples/processing/bam_files"
 
 # Define the base output directory
-base_dir="./dog_samples"
+base_dir="./dog_samples/processing"
 
 # Function to process BAM files in a directory
 process_directory() {
     local dir="$1"
-    local output_file="$dir/sequence_counts.csv"
+    local output_file="$base_dir/sequence_counts.csv"
 
     # Check if there are any BAM files in this directory
     if ! ls "$dir"/*.bam 1> /dev/null 2>&1; then

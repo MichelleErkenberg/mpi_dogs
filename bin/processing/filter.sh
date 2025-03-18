@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#change the bam file to you bam dir
+bam_dir="$BASE_PATH/data/dog_samples/processing/bam_files"
 
 # Change to the working directory
 cd "$BASE_PATH/data/dog_samples" || exit 1
@@ -7,7 +9,7 @@ cd "$BASE_PATH/data/dog_samples" || exit 1
 ### Step 1: ChrM Extraction ###
 mkdir -p ChrM
 echo "Starting ChrM extraction..."
-for bam_file in *.bam; do          # need to change it to the bam file dir
+for bam_file in "$bam_dir/*.bam"; do          
   base_name=$(basename "$bam_file" .bam)
   samtools view -b "$bam_file" "chrM" > "ChrM/${base_name}_ChrM.bam"
   echo "Processed: $bam_file → ChrM/${base_name}_ChrM.bam"
