@@ -1,7 +1,7 @@
-#!/bin/bash
+##!/bin/bash
 
 #change to directory
-cd ../data/dog_samples
+cd "$BASE_PATH/data/dog_samples"
 
 # Iterate over all BAM files in the specified directory
 for bam_file in *.bam; do

@@ -83,7 +83,7 @@ sample_number	sample_id	office	office_number	x	y	category	category2	location	dog
 82	sample_82	Elena	U3.86			desk	nc_office	No dogs	cat
 83	sample_83	Cleanroom	B-1.31			middle	lab	No dogs	No dogs
 84	sample_84	Cleanroom	B-1.31			wall	lab	No dogs	No dogs
-85	negative_sample_gr1					nc	nc		
-86	negative_sample_gr2					nc	nc		
-87	negative_sample_gr3					nc	nc		
-88	negative_sample_gr4					nc	nc		
+85	negative_sample_gr1	NC				nc	nc		
+86	negative_sample_gr2	NC				nc	nc		
+87	negative_sample_gr3	NC				nc	nc		
+88	negative_sample_gr4	NC				nc	nc		
