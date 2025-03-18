@@ -120,9 +120,34 @@ Samples that are filtered out are highlighted with an asterisk. The data shows t
 
 ### Headmaps
 
-With the knowledge that every dog's DNA is most likely to occur in there owners office, we started to investigate the two main dog offices. Those include for office 1: Heidi, Vito, Fritzy and Urza, and for office 2: Lily and Thor A. As Lily and Thor A were grouped due to there genetic similarities in the first place, we used a different filtered dataset. The amount of DNA belonging to each individual dog was visualized as a heatmap.
+With the knowledge that every dog's DNA is most likely to occur in there owners office, we started to investigate the two main dog offices. Those include for office 1: Heidi, Vito, Fritzy and Urza, and for office 2: Lily and Thor A. The amount of DNA belonging to each individual dog was visualized as a heatmap.
+```
+R/heatmaps_dog_offices.R
+``` 
 
 ### Different species in dog and non-dog locations
 
-As the ground samples were taken from various locations, they might as well contain DNA from other species. Therefore, the presence of human, Felican and Suidae DNA was also checked.
+As the ground samples were taken from various locations, they might as well contain DNA of other species. Therefore, the presence of human, Felican and Suidae DNA was also checked. As this is also an indicator of the amount of dog DNA in general, we decided to compare dog offices with all other locations. 
+```
+R/family_dog_vs_non_dog_office.R
+```
+
+### Occurrence of human and dog DNA
+
+Most of the DNA found is from humans or dogs, and dog DNA is more likely to be found in the dog offices than in other locations. To compare the amount of human and dog DNA in different locations, another plot was created.
+```
+R/category_family_location.R
+```
+
+### Walls vs Non-Walls
+
+Another hypothesis was that DNA might accumulate near the walls. Therefore, the amount of human and dog DNA was compared in the dog offices as well as in other locations.
+```
+R/walls_vs_no_walls.R
+```
+
+
+
+
+
 
