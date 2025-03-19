@@ -14,6 +14,10 @@ To use this in your environment, you need to change the BASE_PATH to:
 export BASE_PATH="/Path/to/your/file" 
 ```
 
+It is also possible to use the script. This script will guide you acorring to the "Step-By-Step explanation of the script". There is also the possiblility to make some easy changes, like the BASE_PATH.
+```
+bash /bin/step_by_step_run_all.sh
+```
 
 
 ## Step-By-Step explanation of the script
