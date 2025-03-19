@@ -94,6 +94,11 @@ elif [[ "$x" == "R" ]]; then
 #uses the txt file with the location to sort those average radios into new csv files
 #python3 R_prep/env_place.py "$BASE_PATH/data/dog_samples/R_prep/R_prep_sample_vs_dog.csv" "$BASE_PATH/data/dog_samples/R_prep/dog_env_samples_24_v1.txt" "$BASE_PATH/data/dog_samples/R_prep/"
 #python3 R_prep/env_place.py "$BASE_PATH/data/dog_samples/R_prep/all_dogs_AC/R_prep_sample_vs_dog_AC.csv" "$BASE_PATH/data/dog_samples/R_prep/dog_env_samples_24_v1.txt" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_AC"
+
+# for running the entire script
+elif [[ "$x" == "all" ]]; then
+	bash run_all.sh
+
 else
 	echo "avalible processes:"
 	echo "processing"
@@ -105,7 +110,9 @@ else
 	echo "coordinates"
 	echo "snps"
 	echo "R"
+	echo "all"
 fi
+
 read -p "continue process (y/n)?: " c
 	if [[ "$c" == "y" ]]; then
 		continue

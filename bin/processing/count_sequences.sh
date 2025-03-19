@@ -4,7 +4,7 @@
 cd "$BASE_PATH/data/dog_samples/processing/bam_files"
 
 # Define the base output directory
-base_dir="./dog_samples/processing"
+base_dir="$BASE_PATH/data/dog_samples/processing"
 
 # Function to process BAM files in a directory
 process_directory() {
