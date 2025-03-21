@@ -46,35 +46,57 @@ process_bam_files_in_directory() {
     done
 }
 
+# Function to process bam_files
+process_bam_files() {
+    local output_file="$base_dir/bam_files_sequence_counts.csv"
+
+    # Check if the output file already exists
+    if [[ -f "$output_file" ]]; then
+        read -p "bam_files_sequence_counts.csv already exists. Repeat processing? (y/n): " choice
+        if [[ $choice != "y" ]]; then
+            echo "Skipping bam_files processing."
+            return
+        fi
+    fi
+
+    # Write the header to the CSV file
+    echo "Sample,Category,SequenceCount" > "$output_file"
+
+    echo "Processing bam_files..."
+    process_bam_files_in_directory "$base_dir/bam_files" "$output_file" "bam_files"
+}
+
+# Function to process ChrM and its subdirectories
+process_chrm_files() {
+    local output_file="$base_dir/chrm_sequence_counts.csv"
+
+    # Check if the output file already exists
+    if [[ -f "$output_file" ]]; then
+        read -p "chrm_sequence_counts.csv already exists. Repeat processing? (y/n): " choice
+        if [[ $choice != "y" ]]; then
+            echo "Skipping ChrM processing."
+            return
+        fi
+    fi
+
+    # Write the header to the CSV file
+    echo "Sample,Category,SequenceCount" > "$output_file"
+
+    # Process ChrM directory and subdirectories (ChrM, MQ25, MQ25/dedup)
+    for subdir in "ChrM" "ChrM/MQ25" "ChrM/MQ25/dedup"; do
+        dir="$base_dir/$subdir"
+        if [ -d "$dir" ]; then
+            echo "Indexing and processing $subdir..."
+            index_bam_files "$dir"
+            process_bam_files_in_directory "$dir" "$output_file" "$subdir"
+        else
+            echo "Directory $subdir does not exist. Skipping."
+        fi
+    done
+}
+
 # Main execution
-output_file="$base_dir/sequence_counts.csv"
+process_bam_files
+process_chrm_files
 
-# Check if the output file already exists
-if [[ -f "$output_file" ]]; then
-    read -p "sequence_counts.csv already exists. Repeat processing? (y/n): " choice
-    if [[ $choice != "y" ]]; then
-        echo "Skipping processing."
-        exit 0
-    fi
-fi
-
-# Write the header to the CSV file
-echo "Sample,Category,SequenceCount" > "$output_file"
-
-# Process bam_files directory
-echo "Processing bam_files..."
-process_bam_files_in_directory "$base_dir/bam_files" "$output_file" "bam_files"
-
-# Index and process ChrM directory and subdirectories (ChrM, MQ25, MQ25/dedup)
-for subdir in "ChrM" "ChrM/MQ25" "ChrM/MQ25/dedup"; do
-    dir="$base_dir/$subdir"
-    if [ -d "$dir" ]; then
-        echo "Indexing and processing $subdir..."
-        index_bam_files "$dir"
-        process_bam_files_in_directory "$dir" "$output_file" "$subdir"
-    else
-        echo "Directory $subdir does not exist. Skipping."
-    fi
-done
-
-echo "Processing complete. Results have been written to $output_file."
+echo "Processing complete. Check the CSV files in ${base_dir}"
