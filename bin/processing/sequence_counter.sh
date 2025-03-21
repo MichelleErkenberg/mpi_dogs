@@ -48,7 +48,9 @@ process_bam_files_in_directory() {
         if grep -q "^$sample_name," "$output_file"; then
             sed -i "/^$sample_name,/ s/$/,$sequence_count/" "$output_file"
         else
-            echo "$sample_name,$(printf '%0.s,' $(seq 1 $(awk -F, '{print NF-1}' "$output_file" | head -1)))$sequence_count" >> "$output_file"
+            num_columns=$(awk -F, '{print NF}' "$output_file" | head -1)
+            padding=$(printf '%0.s,' $(seq 2 $num_columns))
+            echo "$sample_name,$padding$sequence_count" >> "$output_file"
         fi
 
         echo "Processed: $sample_name ($column_name) - Count: $sequence_count"
