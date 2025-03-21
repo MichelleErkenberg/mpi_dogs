@@ -18,10 +18,10 @@ process_bam_files() {
     if ! compgen -G "$dir"/*.bam > /dev/null; then
         echo "No BAM files found in $dir"
         return
-    }
+    fi
 
     # Initialize the CSV file with headers
-    echo "Sample," > "$output_file"
+    echo "Sample,SequenceCount" > "$output_file"
 
     # Process each BAM file
     for bam_file in "$dir"/*.bam; do
@@ -37,7 +37,7 @@ process_bam_files() {
 # Function to process ChrM and subdirectories
 process_chrm_directories() {
     local output_file="${base_dir}/chrm_sequence_counts.csv"
-    
+
     # Initialize the CSV file with headers
     echo "Sample,ChrM,MQ25,dedup" > "$output_file"
 
@@ -47,7 +47,7 @@ process_chrm_directories() {
         chrm_count=$(samtools view -c "${sample_dir}/s_all_${sample_name}_S_ChrM.bam" 2>/dev/null || echo "N/A")
         mq25_count=$(samtools view -c "${sample_dir}/MQ25/s_all_${sample_name}_S_ChrM_MQ25.bam" 2>/dev/null || echo "N/A")
         dedup_count=$(samtools view -c "${sample_dir}/MQ25/dedup/s_all_${sample_name}_S_ChrM_MQ25_dedup.bam" 2>/dev/null || echo "N/A")
-        
+
         echo "${sample_name},${chrm_count},${mq25_count},${dedup_count}" >> "$output_file"
         echo "Processed: $sample_name"
     done
