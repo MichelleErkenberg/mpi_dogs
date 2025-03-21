@@ -1,35 +1,43 @@
-##!/bin/bash
+#!/bin/bash
 
-#change to directory
-bam_files="$BASE_PATH/data/dog_samples/processing/"
+# Define the base directory
+base_dir="$BASE_PATH/data/dog_samples/processing"
 
-# Function to process BAM files
-process_bam_file() {
-  local bam_file="$1"
-  local current_dir="$(dirname "$bam_file")"
-  local output_file="$current_dir/$(basename "$bam_file" .bam)_sequence_counts.csv"
+# Function to process BAM files in a directory
+process_directory() {
+    local dir="$1"
+    local output_file="$dir/sequence_counts.csv"
 
-  # Write the header to the CSV file
-  echo "Chromosome,SequenceCount" > "$output_file"
+    # Check if there are any BAM files in this directory
+    if ! compgen -G "$dir"/*.bam > /dev/null; then
+        echo "No BAM files found in $dir"
+        return
+    fi
 
-  # Use samtools idxstats to get the count of sequences per chromosome
-  samtools idxstats "$bam_file" | while read -r line
-  do
-    # Extract chromosome name and sequence count
-    chromosome=$(echo "$line" | cut -f 1)
-    sequence_count=$(echo "$line" | cut -f 3)
+    # Write the header to the CSV file
+    echo "Filename,SequenceCount" > "$output_file"
 
-    # Print the filename, chromosome, and the number of sequences
-    echo "File: $(basename "$bam_file") - Chromosome: $chromosome - Number of sequences: $sequence_count"
+    # Iterate over all BAM files in the current directory
+    for bam_file in "$dir"/*.bam
+    do
+        # Count the number of sequences in the BAM file
+        sequence_count=$(samtools view -c "$bam_file")
+        
+        # Get the filename without the path
+        filename=$(basename "$bam_file")
 
-    # Append the data to the CSV file
-    echo "$chromosome,$sequence_count" >> "$output_file"
-  done
+        # Print the filename and the number of sequences to the console
+        echo "File: $filename - Number of sequences: $sequence_count"
+        
+        # Append the data to the CSV file
+        echo "$filename,$sequence_count" >> "$output_file"
+    done
 
-  echo "Results for $(basename "$bam_file") have been written to $output_file"
+    echo "Results for $dir have been written to $output_file"
 }
 
-# Recursively iterate through all directories and process BAM files
-find "$bam_files" -type f -name "*.bam" | while read -r bam_file; do
-  process_bam_file "$bam_file"
+# Use find to get all directories, including the base directory and all subdirectories
+find "$base_dir" -type d | while read -r dir
+do
+    process_directory "$dir"
 done
