@@ -2,10 +2,11 @@
 
 #change the bam file to you bam dir
 bam_dir="$BASE_PATH/data/dog_samples/processing/bam_files"
-chrM_dir="$BASE_PATH/data/dog_samples/ChrM"
+chrM_dir="$BASE_PATH/data/dog_samples/processing/ChrM"
 
 # Change to the working directory
 cd "$BASE_PATH/data/dog_samples" || exit 1
+
 
 ### Step 1: ChrM Extraction ###
 mkdir -p "$chrM_dir"
