@@ -44,9 +44,13 @@ process_chrm_directories() {
     # Find all sample directories in ChrM
     find "${base_dir}/ChrM" -mindepth 1 -maxdepth 1 -type d | while read -r sample_dir; do
         sample_name=$(extract_sample_name "$(basename "$sample_dir")")
-        chrm_count=$(samtools view -c "${sample_dir}/s_all_${sample_name}_S_ChrM.bam" 2>/dev/null || echo "N/A")
-        mq25_count=$(samtools view -c "${sample_dir}/MQ25/s_all_${sample_name}_S_ChrM_MQ25.bam" 2>/dev/null || echo "N/A")
-        dedup_count=$(samtools view -c "${sample_dir}/MQ25/dedup/s_all_${sample_name}_S_ChrM_MQ25_dedup.bam" 2>/dev/null || echo "N/A")
+        chrm_file="${sample_dir}/s_all_${sample_name}_S_ChrM.bam"
+        mq25_file="${sample_dir}/MQ25/s_all_${sample_name}_S_ChrM_MQ25.bam"
+        dedup_file="${sample_dir}/MQ25/dedup/s_all_${sample_name}_S_ChrM_MQ25_dedup.bam"
+
+        chrm_count=$([ -f "$chrm_file" ] && samtools view -c "$chrm_file" || echo "N/A")
+        mq25_count=$([ -f "$mq25_file" ] && samtools view -c "$mq25_file" || echo "N/A")
+        dedup_count=$([ -f "$dedup_file" ] && samtools view -c "$dedup_file" || echo "N/A")
 
         echo "${sample_name},${chrm_count},${mq25_count},${dedup_count}" >> "$output_file"
         echo "Processed: $sample_name"
@@ -56,7 +60,33 @@ process_chrm_directories() {
 }
 
 # Main execution
-process_bam_files
-process_chrm_directories
+bam_file="${base_dir}/bam_files_sequence_counts.csv"
+chrm_file="${base_dir}/chrm_sequence_counts.csv"
+
+# Check and process bam_files
+if [[ -f "$bam_file" ]]; then
+    read -p "bam_files_sequence_counts.csv already exists. Repeat processing? (y/n): " choice
+    if [[ $choice == "y" ]]; then
+        process_bam_files
+    else
+        echo "Skipping bam_files processing."
+    fi
+else
+    echo "Processing bam_files..."
+    process_bam_files
+fi
+
+# Check and process chrm_files
+if [[ -f "$chrm_file" ]]; then
+    read -p "chrm_sequence_counts.csv already exists. Repeat processing? (y/n): " choice
+    if [[ $choice == "y" ]]; then
+        process_chrm_directories
+    else
+        echo "Skipping chrm_files processing."
+    fi
+else
+    echo "Processing chrm_files..."
+    process_chrm_directories
+fi
 
 echo "Processing complete. Check the CSV files in ${base_dir}"
