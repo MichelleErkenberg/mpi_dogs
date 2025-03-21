@@ -9,32 +9,30 @@ extract_sample_name() {
     echo "$filename" | sed -n 's/.*s_all_\(.*\)_S.*/\1/p'
 }
 
-# Function to index BAM files in ChrM directory (only if .bai doesn't exist)
-index_bam_files_in_chrm() {
-    find "${base_dir}/ChrM" -type f -name "*ChrM*.bam" | while read -r bam_file; do
+# Function to index BAM files (only if .bai doesn't exist)
+index_bam_files() {
+    local dir="$1"
+    find "$dir" -type f -name "*.bam" | while read -r bam_file; do
         if [ ! -f "${bam_file}.bai" ]; then
             samtools index "$bam_file"
         fi
     done
 }
 
-# Function to process ChrM BAM files
-process_chrm_files() {
-    local dir="$base_dir/ChrM"
-    local output_file="$base_dir/chrm_sequence_counts.csv"
+# Function to process BAM files in a directory and append results to the CSV file
+process_bam_files_in_directory() {
+    local dir="$1"
+    local output_file="$2"
+    local label="$3"
 
-    # Check if there are any ChrM BAM files in this directory
-    if ! ls "$dir"/*ChrM*.bam 1> /dev/null 2>&1; then
-        echo "No ChrM BAM files found in $dir"
+    # Check if there are any BAM files in this directory
+    if ! ls "$dir"/*.bam 1> /dev/null 2>&1; then
+        echo "No BAM files found in $dir"
         return
     fi
 
-    # Write the header to the CSV file
-    echo "Sample,SequenceCount" > "$output_file"
-
-    # Iterate over all ChrM BAM files in the directory
-    for bam_file in "$dir"/*ChrM*.bam
-    do
+    # Iterate over all BAM files in the directory
+    for bam_file in "$dir"/*.bam; do
         # Count the number of sequences in the BAM file
         sequence_count=$(samtools view -c "$bam_file")
         
@@ -42,30 +40,41 @@ process_chrm_files() {
         sample_name=$(extract_sample_name "$(basename "$bam_file")")
 
         # Append the data to the CSV file
-        echo "$sample_name,$sequence_count" >> "$output_file"
-        
-        echo "Processed: $sample_name - Count: $sequence_count"
-    done
+        echo "$sample_name,$label,$sequence_count" >> "$output_file"
 
-    echo "Results have been written to $output_file"
+        echo "Processed: $sample_name ($label) - Count: $sequence_count"
+    done
 }
 
 # Main execution
-chrm_file="$base_dir/chrm_sequence_counts.csv"
+output_file="$base_dir/sequence_counts.csv"
 
 # Check if the output file already exists
-if [[ -f "$chrm_file" ]]; then
-    read -p "chrm_sequence_counts.csv already exists. Repeat processing? (y/n): " choice
+if [[ -f "$output_file" ]]; then
+    read -p "sequence_counts.csv already exists. Repeat processing? (y/n): " choice
     if [[ $choice != "y" ]]; then
         echo "Skipping processing."
         exit 0
     fi
 fi
 
-# Index BAM files in ChrM directory before processing (only if necessary)
-index_bam_files_in_chrm
+# Write the header to the CSV file
+echo "Sample,Category,SequenceCount" > "$output_file"
 
-# Process ChrM files
-process_chrm_files
+# Process bam_files directory
+echo "Processing bam_files..."
+process_bam_files_in_directory "$base_dir/bam_files" "$output_file" "bam_files"
 
-echo "Processing complete. Check the CSV file in ${base_dir}"
+# Index and process ChrM directory and subdirectories (ChrM, MQ25, MQ25/dedup)
+for subdir in "ChrM" "ChrM/MQ25" "ChrM/MQ25/dedup"; do
+    dir="$base_dir/$subdir"
+    if [ -d "$dir" ]; then
+        echo "Indexing and processing $subdir..."
+        index_bam_files "$dir"
+        process_bam_files_in_directory "$dir" "$output_file" "$subdir"
+    else
+        echo "Directory $subdir does not exist. Skipping."
+    fi
+done
+
+echo "Processing complete. Results have been written to $output_file."
