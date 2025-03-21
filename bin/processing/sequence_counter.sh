@@ -9,6 +9,15 @@ extract_sample_name() {
     echo "$filename" | sed -n 's/.*s_all_\(.*\)_S.*/\1/p'
 }
 
+# Function to index BAM files in ChrM and subdirectories if index doesn't exist
+index_bam() {
+    local bam_file="$1"
+    if [ ! -f "${bam_file}.bai" ]; then
+        echo "Indexing ${bam_file}..."
+        samtools index "$bam_file"
+    fi
+}
+
 # Function to process BAM files in the bam_files directory
 process_bam_files() {
     local dir="${base_dir}/bam_files"
@@ -47,6 +56,11 @@ process_chrm_directories() {
         chrm_file="${sample_dir}/s_all_${sample_name}_S_ChrM.bam"
         mq25_file="${sample_dir}/MQ25/s_all_${sample_name}_S_ChrM_MQ25.bam"
         dedup_file="${sample_dir}/MQ25/dedup/s_all_${sample_name}_S_ChrM_MQ25_dedup.bam"
+
+        # Index BAM files only if necessary
+        [ -f "$chrm_file" ] && index_bam "$chrm_file"
+        [ -f "$mq25_file" ] && index_bam "$mq25_file"
+        [ -f "$dedup_file" ] && index_bam "$dedup_file"
 
         chrm_count=$([ -f "$chrm_file" ] && samtools view -c "$chrm_file" || echo "N/A")
         mq25_count=$([ -f "$mq25_file" ] && samtools view -c "$mq25_file" || echo "N/A")
