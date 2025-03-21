@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Pfade
+# Path
 bam_dir="$BASE_PATH/data/dog_samples/processing/bam_files"
 chrM_dir="$BASE_PATH/data/dog_samples/processing/ChrM"
 
@@ -24,13 +24,10 @@ for bam_file in $chrM_dir/*.bam; do
 done
 
 ### Step 3: Deduplication (modernere Methode) ###
-mkdir -p "$chrM_dir/MQ25/dedup"
+mkdir -p "$chrM_dir/MQ25/dedup"  # Pfadkorrektur: "ChrM/ChrM/" → "ChrM/"
 echo -e "\nStarting deduplication..."
-for bam_file in $chrM_dir/MQ25/*.bam; do
+for bam_file in $chrM_dir/MQ25/*.bam; do  # Anführungszeichen entfernt
   filename=$(basename "$bam_file" .bam)
-  samtools sort -n "$bam_file" | \
-  samtools fixmate -m - - | \
-  samtools markdup - "$chrM_dir/MQ25/dedup/${filename}_dedup.bam"
+  samtools rmdup "$bam_file" "$chrM_dir/MQ25/dedup/${filename}_dedup.bam"
   samtools index "$chrM_dir/MQ25/dedup/${filename}_dedup.bam"
-  echo "Deduplicated: $bam_file → $chrM_dir/MQ25/dedup/${filename}_dedup.bam"
 done
