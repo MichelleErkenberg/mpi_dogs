@@ -36,6 +36,9 @@ process_bam_files_in_directory() {
         sed -i "1s/$/,$column_name/" "$output_file"
     fi
 
+    # Get the current number of columns
+    num_columns=$(head -1 "$output_file" | awk -F, '{print NF}')
+
     # Iterate over all BAM files in the directory
     for bam_file in "$dir"/*.bam; do
         # Count the number of sequences in the BAM file
@@ -46,16 +49,22 @@ process_bam_files_in_directory() {
 
         # Update the CSV file
         if grep -q "^$sample_name," "$output_file"; then
+            # If the sample already exists, append the new count
             sed -i "/^$sample_name,/ s/$/,$sequence_count/" "$output_file"
         else
-            num_columns=$(awk -F, '{print NF}' "$output_file" | head -1)
-            padding=$(printf '%0.s,' $(seq 2 $num_columns))
-            echo "$sample_name,$padding$sequence_count" >> "$output_file"
+            # If it's a new sample, create a new line with the correct number of fields
+            new_line="$sample_name"
+            for ((i=2; i<num_columns; i++)); do
+                new_line="$new_line,"
+            done
+            new_line="$new_line$sequence_count"
+            echo "$new_line" >> "$output_file"
         fi
 
         echo "Processed: $sample_name ($column_name) - Count: $sequence_count"
     done
 }
+
 
 # Function to process bam_files
 process_bam_files() {
