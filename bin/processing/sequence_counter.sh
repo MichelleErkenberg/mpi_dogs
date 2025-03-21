@@ -44,7 +44,7 @@ process_bam_files() {
     # Process each BAM file
     for bam_file in "$dir"/*.bam; do
         sample_name=$(extract_sample_name "$(basename "$bam_file")")
-        sequence_count=$(samtools view -c "$bam_file")
+        sequence_count=$(samtools idxstats "$bam_file" | awk '{sum += $3} END {print sum}')
         echo "${sample_name},${sequence_count}" >> "$output_file"
         echo "Processed: $sample_name - Count: $sequence_count"
     done
@@ -66,9 +66,9 @@ process_chrm_directories() {
         mq25_file="${sample_dir}/MQ25/s_all_${sample_name}_S_ChrM_MQ25.bam"
         dedup_file="${sample_dir}/MQ25/dedup/s_all_${sample_name}_S_ChrM_MQ25_dedup.bam"
 
-        chrm_count=$([ -f "$chrm_file" ] && samtools view -c "$chrm_file" || echo "N/A")
-        mq25_count=$([ -f "$mq25_file" ] && samtools view -c "$mq25_file" || echo "N/A")
-        dedup_count=$([ -f "$dedup_file" ] && samtools view -c "$dedup_file" || echo "N/A")
+        chrm_count=$([ -f "$chrm_file" ] && samtools idxstats "$chrm_file" | awk '{sum += $3} END {print sum}' || echo "N/A")
+        mq25_count=$([ -f "$mq25_file" ] && samtools idxstats "$mq25_file" | awk '{sum += $3} END {print sum}' || echo "N/A")
+        dedup_count=$([ -f "$dedup_file" ] && samtools idxstats "$dedup_file" | awk '{sum += $3} END {print sum}' || echo "N/A")
 
         echo "${sample_name},${chrm_count},${mq25_count},${dedup_count}" >> "$output_file"
         echo "Processed: $sample_name"
