@@ -15,7 +15,7 @@ for bam_file in "$bam_dir/*.bam"; do
   samtools view -b "$bam_file" "chrM" > "$chrM_dir/${base_name}_ChrM.bam"
   echo "Processed: $bam_file → "$chrM_dir/${base_name}_ChrM.bam""
 done
-echo "ChrM extraction completed."
+
 
 ### Step 2: MAPQ25 Filtering ###
 mkdir -p "$chrM_dir/MQ25"
@@ -26,7 +26,7 @@ for bam_file in "$chrM_dir/*.bam"; do
   samtools index "$chrM_dir/MQ25/${filename}_MQ25.bam"
   echo "Processed: $bam_file → "$chrM_dir/MQ25/${filename}_MQ25.bam""
 done
-echo "MAPQ25 filtering completed."
+
 
 ### Step 3: Deduplication ###
 mkdir -p "$chrM_dir/ChrM/MQ25/dedup"
