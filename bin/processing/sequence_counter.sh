@@ -31,6 +31,11 @@ process_bam_files_in_directory() {
         return
     fi
 
+    # Add the column name to the header if it doesn't exist
+    if ! grep -q "$column_name" "$output_file"; then
+        sed -i "1s/$/,$column_name/" "$output_file"
+    fi
+
     # Iterate over all BAM files in the directory
     for bam_file in "$dir"/*.bam; do
         # Count the number of sequences in the BAM file
@@ -41,16 +46,13 @@ process_bam_files_in_directory() {
 
         # Update the CSV file
         if grep -q "^$sample_name," "$output_file"; then
-            sed -i "s/^$sample_name,.*/$sample_name,&$sequence_count/" "$output_file"
+            sed -i "/^$sample_name,/ s/$/,$sequence_count/" "$output_file"
         else
-            echo "$sample_name,,$sequence_count" >> "$output_file"
+            echo "$sample_name,$(printf '%0.s,' $(seq 1 $(awk -F, '{print NF-1}' "$output_file" | head -1)))$sequence_count" >> "$output_file"
         fi
 
         echo "Processed: $sample_name ($column_name) - Count: $sequence_count"
     done
-
-    # Add the column name to the header
-    sed -i "1s/$/,$column_name/" "$output_file"
 }
 
 # Function to process bam_files
@@ -67,7 +69,7 @@ process_bam_files() {
     fi
 
     # Write the header to the CSV file
-    echo "Sample" > "$output_file"
+    echo "Sample,bam_files" > "$output_file"
 
     echo "Processing bam_files..."
     process_bam_files_in_directory "$base_dir/bam_files" "$output_file" "bam_files"
@@ -103,7 +105,11 @@ process_chrm_files() {
 }
 
 # Main execution
+
+# Process bam_files directory first and create its CSV file.
 process_bam_files
+
+# Process ChrM and its subdirectories and create/update its CSV file.
 process_chrm_files
 
 echo "Processing complete. Check the CSV files in ${base_dir}"
