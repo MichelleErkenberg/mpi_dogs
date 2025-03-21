@@ -9,13 +9,22 @@ extract_sample_name() {
     echo "$filename" | sed -n 's/.*s_all_\(.*\)_S.*/\1/p'
 }
 
-# Function to index BAM files in ChrM and subdirectories if index doesn't exist
-index_bam() {
-    local bam_file="$1"
-    if [ ! -f "${bam_file}.bai" ]; then
-        echo "Indexing ${bam_file}..."
-        samtools index "$bam_file"
-    fi
+# Function to index BAM files in ChrM and subdirectories
+index_bam_files_in_chrm() {
+    echo "Indexing BAM files in ChrM and subdirectories..."
+    find "${base_dir}/ChrM" -type f -name "*.bam" | while read -r bam_file; do
+        if [ ! -f "${bam_file}.bai" ]; then
+            echo "Creating index for ${bam_file}..."
+            samtools index "$bam_file"
+            if [ $? -eq 0 ]; then
+                echo "Index created successfully for ${bam_file}."
+            else
+                echo "Error creating index for ${bam_file}."
+            fi
+        else
+            echo "Index already exists for ${bam_file}."
+        fi
+    done
 }
 
 # Function to process BAM files in the bam_files directory
@@ -57,11 +66,6 @@ process_chrm_directories() {
         mq25_file="${sample_dir}/MQ25/s_all_${sample_name}_S_ChrM_MQ25.bam"
         dedup_file="${sample_dir}/MQ25/dedup/s_all_${sample_name}_S_ChrM_MQ25_dedup.bam"
 
-        # Index BAM files only if necessary
-        [ -f "$chrm_file" ] && index_bam "$chrm_file"
-        [ -f "$mq25_file" ] && index_bam "$mq25_file"
-        [ -f "$dedup_file" ] && index_bam "$dedup_file"
-
         chrm_count=$([ -f "$chrm_file" ] && samtools view -c "$chrm_file" || echo "N/A")
         mq25_count=$([ -f "$mq25_file" ] && samtools view -c "$mq25_file" || echo "N/A")
         dedup_count=$([ -f "$dedup_file" ] && samtools view -c "$dedup_file" || echo "N/A")
@@ -89,6 +93,9 @@ else
     echo "Processing bam_files..."
     process_bam_files
 fi
+
+# Index BAM files in ChrM and subdirectories before processing them
+index_bam_files_in_chrm
 
 # Check and process chrm_files
 if [[ -f "$chrm_file" ]]; then
