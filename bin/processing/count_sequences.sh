@@ -1,9 +1,7 @@
 ##!/bin/bash
 
 
-cd "$BASE_PATH/data/dog_samples/processing/bam_files"
-
-# Define the base output directory
+# Define the base directory
 base_dir="$BASE_PATH/data/dog_samples/processing"
 
 # Function to process BAM files in a directory

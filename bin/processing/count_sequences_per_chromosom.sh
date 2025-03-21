@@ -1,12 +1,13 @@
 ##!/bin/bash
 
 #change to directory
-cd "$BASE_PATH/data/dog_samples/processing/"
+bam_files="$BASE_PATH/data/dog_samples/processing/"
 
-# Iterate over all BAM files in the specified directory
-for bam_file in bam_files/*.bam; do
-  # Define the output file for each BAM file
-  output_file="$(basename "$bam_file" .bam)_sequence_counts.csv"
+# Function to process BAM files
+process_bam_file() {
+  local bam_file="$1"
+  local current_dir="$(dirname "$bam_file")"
+  local output_file="$current_dir/$(basename "$bam_file" .bam)_sequence_counts.csv"
 
   # Write the header to the CSV file
   echo "Chromosome,SequenceCount" > "$output_file"
@@ -26,4 +27,9 @@ for bam_file in bam_files/*.bam; do
   done
 
   echo "Results for $(basename "$bam_file") have been written to $output_file"
+}
+
+# Recursively iterate through all directories and process BAM files
+find "$bam_files" -type f -name "*.bam" | while read -r bam_file; do
+  process_bam_file "$bam_file"
 done

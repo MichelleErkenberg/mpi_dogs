@@ -27,7 +27,6 @@ if [[ "$x" == "processing" ]]; then
 	
 elif [[ "$x" == "count" ]]; then	
 	#count the sequences and for orignial data count also for sequences per chromosom
-	bash processing/count_sequences.sh
 	bash processing/count_sequences_per_chromosom.sh
 	echo "amount of sequences pre chromosom and for ChrM counted"
 	

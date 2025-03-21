@@ -10,7 +10,6 @@ export BASE_PATH="/home/michelle/github/mpi_dogs"
 #	bash processing/filter.sh
 	
 	#count the sequences and for orignial data count also for sequences per chromosom
-#	bash processing/count_sequences.sh
 #	bash processing/count_sequences_per_chromosom.sh
 	
 #Call a consensus sequence for each dog using Matthias' perl script
