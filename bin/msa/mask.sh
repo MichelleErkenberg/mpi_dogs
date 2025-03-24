@@ -26,7 +26,7 @@ for file in "$source_dir"/*consensus.cov5support80basequal0mask0.fas; do
 done
 
 # Delete Undetermined.fas if it exists in the source directory (isn't a dog, just the stuff thats left)
-if [ -f "$source_dir/Undetermined.fas" ]; then
+if [ -f "$source_dir/*_Undetermined_*.fas" ]; then
     rm "$source_dir/Undetermined.fas"
     echo "Deleted Undetermined.fas from source directory."
 fi
