@@ -2,9 +2,7 @@
 
 read -p "change BASE_PATH?(n/y): " b
 if [[ "$b" == "n" ]]; then
-#define base path, need to be change to your path
-	#export BASE_PATH="/mnt/expressions/michelle_erkenberg/github/mpi_dogs" 
-	export BASE_PATH="/home/michelle/github/mpi_dogs"
+	export BASE_PATH="../."
 	echo "current BASE_PATH = "$BASE_PATH"" 
 elif [[ "$b" == "y" ]]; then
 	read -p "change BASE_PATH to: " bn
