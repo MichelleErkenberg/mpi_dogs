@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir -p "$BASE_PATH/data/dog_samples/msa"
+mkdir -p "$BASE_PATH/data/dog_samples/msa/msa"
+
 # Set the working directory
 work_dir="$BASE_PATH/data/dog_samples/msa/mask"
 msa_dir="$BASE_PATH/data/dog_samples/msa"
