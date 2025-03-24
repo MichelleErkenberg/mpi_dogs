@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define directories and reference file
-BAM_DIR="$BASE_PATH/data/dog_samples/ChrM/MQ25/dedup"
+BAM_DIR="$BASE_PATH/data/dog_samples/processing/ChrM/MQ25/dedup"
 REF_FILE="$BASE_PATH/data/science_dogs/Canis_lupus_familiaris.fasta"
 SCRIPT_PATH="$BASE_PATH/bin/consensus/consensus_from_bam.pl"
 
