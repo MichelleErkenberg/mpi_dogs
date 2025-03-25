@@ -2,7 +2,7 @@
 
 read -p "change BASE_PATH?(n/y): " b
 if [[ "$b" == "n" ]]; then
-	export BASE_PATH="$PATH:$(pwd)"
+	export BASE_PATH=$(pwd)
 	echo "current BASE_PATH = "$BASE_PATH"" 
 elif [[ "$b" == "y" ]]; then
 	read -p "change BASE_PATH to: " bn
