@@ -66,10 +66,11 @@ elif [[ "$x" == "coordinates" ]]; then
 	echo "genomic coordinates detected"
 
 #dogs were living in different offices, this script creates files with just the dogs that lived together 
-elif [[ "$x" == "snps" ]]; then
+elif [[ "$x" == "offices" ]]; then
 	bash bin/ref/run_extract_dog.sh
 
 #finding the private position for our dogs in the environment data
+elif [[ "$x" == "snps" ]]; then
 	bash bin/env_bam/run_bam.sh
 	echo "private positions for each dog detected and compared with environmental data" 
 
@@ -105,6 +106,7 @@ else
 	echo "tree"
 	echo "differences"
 	echo "coordinates"
+	echo "offices"
 	echo "snps"
 	echo "R"
 	echo "all"
