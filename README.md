@@ -72,16 +72,21 @@ In order to compare the sequence of the MPI dogs with the sequence information f
 ```
 python3 ref/ref_coor.py "$BASE_PATH/data/dog_samples/diff/replaced_seq.related_n.mpi_dogs.added_ref.aln" "$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv" NC_002008.4 fasta
 ```
+### 7. Dividing the dogs in different categorize for detailt analysizes (offices)
 
-### 7. Detecting private positions (snps)
-
-As we assume that MPI dogs are most likely to be found in their owner's office, we focused mainly on the differentiation between dogs in the same office. The following scripts only allow to compare dogs living in the same office to detect private positions. The offices of the dogs were added manually in the first script.
+As we assume that MPI dogs are most likely to be found in their owner's office, we focused mainly on the differentiation between dogs in the same office (raw). It is also possible to exclude dogs via differnt filters (exclude).
 ```
-bash ref/run_extract_dog.sh 
+bash ref/run_extract_dog.sh
+```
+
+### 8. Detecting private positions (snps)
+
+The following script should find private position of each dog in comparission the other (filtered) dogs. 
+```
 bash env_bam/run_bam.sh
 ```
 
-### 8. R preparation (R)
+### 9. R preparation (R)
 
 In order to visualize the collected data in R, some processing was required. Therefore, a csv file was created containing the average radio for each MPI dog in each sample.
 ```
