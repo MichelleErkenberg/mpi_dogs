@@ -59,13 +59,13 @@ while true; do
 
             # All excluded files without lily
             declare -A dogs_exl=(
-                ["$a"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.${a}.csv"
-                ["$b"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.${b}.csv" 
-                ["Heidi"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Heidi.csv" 
-                ["Fritzy"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Fritzy.csv"
-                ["Vito"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Vito.csv" 
-                ["Urza"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Urza.csv" 
-                ["Charlie"]="$office_file/all_dogs_with_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Charlie.csv" 
+                ["$a"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.${a}.csv"
+                ["$b"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.${b}.csv" 
+                ["Heidi"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Heidi.csv" 
+                ["Fritzy"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Fritzy.csv"
+                ["Vito"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Vito.csv" 
+                ["Urza"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Urza.csv" 
+                ["Charlie"]="$office_file/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Charlie.csv" 
             )
 
             # Loop for all dogs without lily
