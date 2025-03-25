@@ -28,14 +28,14 @@ bash processing/sequence_counter.sh
 
 ### 2. Consensus (consensus)
 
-Using the processed data to call a consensus sequence for each dog is done by using Matthias' perl script and a canines references FASTA.
+Using the processed data to call a consensus sequence for each dog is done by using Matthias' perl script and a canines references FASTA. In addition, the undetermined data were deleted.
 ```
 bash consensus/consensus.sh	
 ```
 
 ### 3. MSA (msa)
 
-In a first step to create a multiple sequence alignment (MSA), a masking step was performed. This resulted in a renamed copy of the consensus sequence for all dogs in a separate file. In addition, the undetermined data were deleted and the files are renamed to a shorter form.
+In a first step to create a multiple sequence alignment (MSA), a masking step was performed. This resulted in a renamed copy of the consensus sequence for all dogs in a separate file. Also, the files are renamed to a shorter form.
 ```
 bash msa/mask.sh	
 ```
