@@ -27,9 +27,9 @@ for bam_file in "$BAM_DIR"/*.bam; do
     echo "----------------------------------------"
 done
 
-# Delete Undetermined.fas if it exists in the source directory (isn't a dog, just the stuff thats left)
-    rm "$BASE_PATH/data/dog_samples/consensus/*_Undetermined_*"
-    echo "Deleted Undetermined.fas from source directory."
+# Delete Undetermined if it exists in the source directory (isn't a dog, just the stuff thats left)
+    find . -name "s_all_Undetermined_*" -type f -delete
+    echo "Deleted Undetermined."
 
 
 echo "All BAM files have been processed."

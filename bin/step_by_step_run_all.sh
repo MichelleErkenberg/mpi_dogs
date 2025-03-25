@@ -85,7 +85,7 @@ elif [[ "$x" == "R" ]]; then
 #python3 R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_AC/R_prep_sample_vs_dog_AC.csv" "2"
 #creates csv file with average radio for each dog by using all dog (except Thor A and B and Lily)
 	mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL"
-	python3 bin/R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_2snp.csv" "$s"
+	python3 bin/R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_env_ACwoL/all_env_AC*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_ACwoL/R_prep_sample_vs_dog_ACwoL_${s}snp.csv" "$s"
 	echo "environmental data processed with "$s" SNPs"
 
 #uses the txt file with the location to sort those average radios into new csv files
