@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$BASE_PATH/tmp/user_input.sh"
 
 # Creating and defining new env_bam file as csv output file
 mkdir -p "$BASE_PATH/data/dog_samples/env_bam"

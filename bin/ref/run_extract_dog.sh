@@ -55,8 +55,8 @@ if [[ "$x" == "raw" ]]; then
 
 elif [[ "$x" == "exclude" ]]; then
     read -p "Please decide whether to keep ThorA or Anda and ThorB or Cami: " a b 
-    export a="$a"
-    export b="$b" # Exports included dogs as variables
+    echo "a='$a'" > "BASE_PATH/tmp/user_input.sh"
+    echo "b='$b'" >> "BASE_PATH/tmp/user_input.sh" #to use this variables in other scripts
     # Extracting all dogs (always decide between closely related ones)
     mkdir -p "$OUTDIR/all_dogs_with_${a}_${b}"
     bash "$extract_script" "$FILE" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_with_${a}_${b}.csv" "$a" "$b" "Fritzy" "Heidi" "Urza" "Vito" "Lily" "Charlie" 
