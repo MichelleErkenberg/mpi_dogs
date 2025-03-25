@@ -10,6 +10,8 @@ elif [[ "$b" == "y" ]]; then
 	echo "BASE_PATH changed to "$bn""	
 fi
 
+cd /bin
+echo "changed to /bin"
 
 while true; do
 
