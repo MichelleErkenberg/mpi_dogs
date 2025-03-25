@@ -3,7 +3,7 @@
 # Path to the extraction script and reference coordinate file
 extract_script="$BASE_PATH/bin/ref/extract.sh"
 FILE="$BASE_PATH/data/dog_samples/ref/ref_coordinates.csv"
-OUTDIR="$BASE_PATH/data/dog_samples/ref/"
+OUTDIR="$BASE_PATH/data/dog_samples/ref"
 
 while true; do
 
@@ -60,20 +60,11 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/office_thorA.lily/3dogs.csv
 
 elif [[ "$x" == "exclude" ]]; then
 	read -p "please decide whether to keep ThorA or Anda and ThorB or Cami: " a b 
-
+		export a="$a"
+		export b="$b" #exports included dogs as variables
 #extracting all dogs (always decide between closely related once)
 mkdir -p "$OUTDIR/all_dogs_with_${a}_${b}"
 bash "$extract_script" "$FILE" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_with_${a}_${b}.csv" "$a" "$b" "Fritzy" "Heidi" "Urza" "Vito" "Lily" "Charlie" 
-
-	read -p "also merge Lily into Anda/ThorA data (n/y)?: " l
-	if [[ "l" == "y" ]]; then
-mkdir -p "$OUTDIR/all_dogs_${a}_${b}_without_Lily"
-bash "$extract_script" "$FILE" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$a" "$b" "Fritzy" "Heidi" "Urza" "Vito" "Charlie" 
-echo "Extraction without Lily and $a and $b completed."
-	else
-echo "All extractions completed."
-	fi
-#-----------------comparing all dogs (minus closely related once)-------------------
 
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_with_${a}_${b}.csv" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_${a}${b}.${a}.csv" "$a"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_with_${a}_${b}.csv" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_${a}${b}.${b}.csv" "$b"
@@ -84,6 +75,18 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_with_${a}_${b}/all
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_with_${a}_${b}.csv" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_${a}${b}.Lily.csv" "Lily"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_with_${a}_${b}.csv" "$OUTDIR/all_dogs_with_${a}_${b}/all_dogs_${a}${b}.Charlie.csv" "Charlie"
 
+
+# -------------------Lily--------------
+read -p "also merge Lily into Anda/ThorA data (n/y)?: " l
+	if [[ "l" == "y" ]]; then
+mkdir -p "$OUTDIR/all_dogs_${a}_${b}_without_Lily"
+bash "$extract_script" "$FILE" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$a" "$b" "Fritzy" "Heidi" "Urza" "Vito" "Charlie" 
+echo "Extraction without Lily and $a and $b completed."
+	else
+echo "All extractions completed."
+	fi
+
+
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.${a}.csv" "$a"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.${b}.csv" "$b"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Heidi.csv" "Heidi"
@@ -92,6 +95,8 @@ python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_${a}_${b}_without_
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Urza.csv" "Urza"
 python3 "$BASE_PATH/bin/ref/diff_finder.py" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}_${b}_without_Lily.csv" "$OUTDIR/all_dogs_${a}_${b}_without_Lily/all_dogs_${a}${b}woL.Charlie.csv" "Charlie"
 fi
+
+else
 
 read -p "Continue filtering (y/n)?: " q
 	if [[ "$q" == "y" ]]; then
