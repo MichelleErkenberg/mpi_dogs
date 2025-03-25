@@ -1,18 +1,16 @@
 #!/bin/bash
 
-source ./bin/ref/run_extrac_dog.sh
-
 # Creating and defining new env_bam file as csv output file
 mkdir -p "$BASE_PATH/data/dog_samples/env_bam"
 env_bam="$BASE_PATH/data/dog_samples/env_bam"
 export bam_file="$BASE_PATH/data/env_samples/quicksand.v2/out/Canidae/fixed/3-deduped/"
-office_file="$BASE_PATH/data/dog_samples/ref/"
+office_file="$BASE_PATH/data/dog_samples/ref"
 
 # Creating *.bam.bai data for every bam to process
 # bash env_bam/bam_to_bai.sh
 
 while true; do
-    read -p "Only compare offices or excluded files (raw/excluded)?: " e 
+    read -p "Only compare offices or excluded files (raw/exclude)?: " e 
     if [[ "$e" == "raw" ]]; then
         # All dogs office files
         declare -A dogs=(
@@ -29,7 +27,7 @@ while true; do
         for dog in "${!dogs[@]}"; do
             input_file="${dogs[$dog]}"
             output_file="$env_bam/all_env_${dog}.csv"
-            python3 env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog"
+            python3 bin/env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog"
         done
 
     elif [[ "$e" == "exclude" ]]; then
@@ -50,7 +48,7 @@ while true; do
         for dog_ex in "${!dogs_ex[@]}"; do
             input_file="${dogs_ex[$dog_ex]}"
             output_file="$env_bam/all_dogs_with_${a}_${b}/all_env_${dog_ex}.csv"
-            python3 env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog_ex"
+            python3 bin/env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog_ex"
         done
 
         # Lily
@@ -73,7 +71,7 @@ while true; do
             for dog_exl in "${!dogs_exl[@]}"; do
                 input_file="${dogs_exl[$dog_exl]}"
                 output_file="$env_bam/all_dogs_with_${a}_${b}_without_Lily/all_env_${dog_exl}.csv"
-                python3 env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog_exl"
+                python3 bin/env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog_exl"
             done
         fi
     else
