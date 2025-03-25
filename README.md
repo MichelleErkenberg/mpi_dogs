@@ -4,17 +4,7 @@ This project was conducted with eight canines residing in their respective owner
 
 ## One script to rule them all
 
-For convenience, all the necessary steps for processing the data are consolidated into a single script:
-```
-bash /bin/run_all.sh
-```
-
-To use this in your environment, you need to change the BASE_PATH to:
-```
-export BASE_PATH="/Path/to/your/file" 
-```
-
-It is also possible to use the script. This script will guide you acorring to the "Step-By-Step explanation of the script". There is also the possiblility to make some easy changes, like the BASE_PATH. 
+The step_by_step_run_all script should be used to process the data. This script will guide you according to the "Step-by-step explanation of the script". Please be sure to run this script from the directory above /bin.
 ```
 bash /bin/step_by_step_run_all.sh
 ```
