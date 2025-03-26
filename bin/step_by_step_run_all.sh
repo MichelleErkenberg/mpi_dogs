@@ -78,17 +78,27 @@ elif [[ "$x" == "snps" ]]; then
 #creates a csv file with the average radio for each dog in the sample
 elif [[ "$x" == "R" ]]; then
 	read -p "choose required amount of snps: " s
-	
- 	source "$BASE_PATH/tmp/user_input.sh"
+
 
 #creates csv file with average radio for each dog by using all dog (except excluded onces)
-	mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs"
-	mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs_${a}_${b}"
-	mkdir -p "$BASE_PATH/data/dog_samples/R_prep/all_dogs_${a}_${b}_without_Lily"
+ENV_BAM_DIR="$BASE_PATH/data/dog_samples/env_bam"
+R_PREP_DIR="$BASE_PATH/data/dog_samples/R_prep"
 
-	python3 bin/R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_dogs/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs/R_prep_sample_vs_dog_${s}snp.csv" "$s"
-	python3 bin/R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_dogs_${a}_${b}/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_${a}_${b}/R_prep_sample_vs_dog_${a}${b}${s}snp.csv" "$s"
-	python3 bin/R_prep/csv_prep.py "$BASE_PATH/data/dog_samples/env_bam/all_dogs_${a}_${b}_without_Lily/all_env_*.csv" "$BASE_PATH/data/dog_samples/R_prep/all_dogs_${a}_${b}_without_Lily/R_prep_sample_vs_dog_${a}${b}woL_${s}snp.csv" "$s"
+
+for folder in "$ENV_BAM_DIR"/*; do
+    if [ -d "$folder" ]; then
+        folder_name=$(basename "$folder")
+        
+        
+        mkdir -p "$R_PREP_DIR/$folder_name"
+        
+        
+        python3 bin/R_prep/csv_prep.py \
+            "$folder/all_env_*.csv" \
+            "$R_PREP_DIR/$folder_name/R_prep_sample_vs_dog_${folder_name}_${s}snp.csv" \
+            "$s"
+    fi
+done
 	echo "environmental data processed with "$s" SNPs"
 
 #uses the txt file with the location to sort those average radios into new csv files
