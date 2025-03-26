@@ -7,8 +7,6 @@ env_bam="$BASE_PATH/data/dog_samples/env_bam"
 export bam_file="$BASE_PATH/data/env_samples/quicksand.v2/out/Canidae/fixed/3-deduped/"
 office_file="$BASE_PATH/data/dog_samples/ref"
 
-# Creating *.bam.bai data for every bam to process
-# bash env_bam/bam_to_bai.sh
 
 while true; do
     read -p "Only compare offices or excluded files (raw/exclude)?: " e 
@@ -27,7 +25,7 @@ while true; do
         # Loop for all dogs
         for dog in "${!dogs[@]}"; do
             input_file="${dogs[$dog]}"
-            output_file="$env_bam/all_env_${dog}.csv"
+            output_file="$env_bam/all_dogs/all_env_${dog}.csv"
             python3 bin/env_bam/bam_finder_new.py "$input_file" "$office_file/ref_coordinates.csv" "$bam_file" "$output_file" "$dog"
         done
 
